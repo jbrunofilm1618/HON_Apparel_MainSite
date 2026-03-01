@@ -1734,6 +1734,38 @@ button {
   color: var(--color-dark);
 }
 
+/* Prevent blog article link styles from overriding structured components */
+.blog-article .btn-gold,
+.blog-article .btn-secondary {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+
+.blog-article .btn-gold:hover {
+  color: var(--color-dark);
+}
+
+.blog-article .breadcrumb a {
+  text-decoration: none;
+}
+
+.blog-article .journal-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-article .journal-card:hover {
+  color: inherit;
+}
+
+.blog-article .blog-cta a {
+  text-decoration: none;
+}
+
+.blog-article .blog-cta-link {
+  text-decoration: none;
+}
+
 .blog-article img {
   width: 100%;
   border-radius: 8px;
@@ -1743,6 +1775,11 @@ button {
 .blog-article strong {
   font-weight: 700;
   color: var(--color-dark);
+}
+
+/* Journal cards on sand-background pages need white background for contrast */
+.blog-page .journal-card {
+  background: var(--color-white);
 }
 
 /* Related posts grid */
