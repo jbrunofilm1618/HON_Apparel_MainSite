@@ -221,7 +221,7 @@ button {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 10px;
   transition: color var(--transition-base);
 }
 
@@ -235,8 +235,8 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 28px;
-  height: 28px;
+  width: 44px;
+  height: 44px;
   gap: 5px;
 }
 
