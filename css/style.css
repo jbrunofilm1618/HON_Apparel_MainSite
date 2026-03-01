@@ -124,6 +124,16 @@ button {
   -webkit-backdrop-filter: blur(10px);
 }
 
+/* Nav inner — flex container for logo, links, mobile controls */
+.nav-inner {
+  width: 100%;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media (min-width: 768px) {
   .site-nav {
     padding: 20px 40px;
@@ -438,10 +448,10 @@ button {
 }
 
 /* Hero staggered entrance */
-.hero-content .fade-up:nth-child(1) { transition-delay: 0.1s; }
-.hero-content .fade-up:nth-child(2) { transition-delay: 0.3s; }
-.hero-content .fade-up:nth-child(3) { transition-delay: 0.5s; }
-.hero-content .fade-up:nth-child(4) { transition-delay: 0.7s; }
+.hero-content .fade-up:nth-child(1) { transition-delay: 0.3s; }
+.hero-content .fade-up:nth-child(2) { transition-delay: 0.6s; }
+.hero-content .fade-up:nth-child(3) { transition-delay: 0.9s; }
+.hero-content .fade-up:nth-child(4) { transition-delay: 1.2s; }
 
 /* --------------------------------------------------------------------------
    7. SCENE 2 — THE NAME (#name)
@@ -922,6 +932,22 @@ button {
 .shopify-buy-button-placeholder:hover {
   background: #b38d24;
   transform: translateY(-1px);
+}
+
+.collection-note {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--color-slate);
+  margin-top: 32px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .collection-note {
+    font-size: 16px;
+    margin-top: 40px;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1452,9 +1478,59 @@ button {
 /* Stagger children */
 .stagger > *:nth-child(1) { transition-delay: 0s; }
 .stagger > *:nth-child(2) { transition-delay: 0.15s; }
-.stagger > *:nth-child(3) { transition-delay: 0.15s; }
+.stagger > *:nth-child(3) { transition-delay: 0.3s; }
 .stagger > *:nth-child(4) { transition-delay: 0.45s; }
 .stagger > *:nth-child(5) { transition-delay: 0.6s; }
+
+/* --------------------------------------------------------------------------
+   16b. BLOG INDEX STYLES
+   -------------------------------------------------------------------------- */
+
+.blog-index-header {
+  min-height: 40vh;
+  padding-top: 140px;
+}
+
+.blog-index-title {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-dark);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .blog-index-title {
+    font-size: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-index-title {
+    font-size: 48px;
+  }
+}
+
+.blog-index-subtext {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--color-slate);
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .blog-index-subtext {
+    font-size: 18px;
+  }
+}
+
+.blog-index-grid {
+  min-height: auto;
+  padding-top: 0;
+}
 
 /* --------------------------------------------------------------------------
    17. BLOG ARTICLE STYLES
@@ -1920,13 +1996,9 @@ button {
 }
 
 .faq-answer {
-  max-height: 0;
+  height: 0;
   overflow: hidden;
-  transition: max-height var(--transition-base), padding var(--transition-base);
-}
-
-.faq-item.open .faq-answer {
-  max-height: 500px;
+  transition: height var(--transition-base);
 }
 
 .faq-answer-inner {

@@ -40,13 +40,7 @@
        ============================================ -->
   <header class="site-nav" id="site-nav">
     <nav class="nav-inner">
-      <a href="#hero" class="nav-logo">HŌN</a>
-
-      <button class="nav-toggle" aria-label="Toggle navigation menu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
+      <a href="#hero" class="nav-wordmark">HŌN</a>
 
       <ul class="nav-links">
         <li><a href="#name" data-section="name">Story</a></li>
@@ -55,29 +49,44 @@
         <li><a href="#subscribe" data-section="subscribe">Subscribe</a></li>
       </ul>
 
-      <a href="#" class="nav-cart" aria-label="Shopping cart">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <path d="M16 10a4 4 0 01-8 0"></path>
-        </svg>
-      </a>
+      <div class="nav-mobile-controls">
+        <button class="nav-cart-icon" aria-label="Shopping cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 01-8 0"></path>
+          </svg>
+        </button>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </nav>
   </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#name">Story</a>
+    <a href="#collection">Collection</a>
+    <a href="/blog/">Journal</a>
+    <a href="#subscribe">Subscribe</a>
+  </div>
 
   <main>
 
     <!-- ============================================
          SCENE 1: HERO
          ============================================ -->
-    <section id="hero" class="section section-dark hero">
+    <section id="hero" class="section">
       <div class="hero-content">
-        <h1 class="hero-headline hero-animate">Athletic Apparel for the Inner Person</h1>
-        <p class="hero-subhead hero-animate">Gymwear rooted in the earliest traditions of the Christian faith.</p>
-        <a href="#collection" class="btn-gold hero-animate">Shop the Collection</a>
-        <a href="#name" class="hero-scroll hero-animate">
+        <h1 class="hero-headline fade-up">Athletic Apparel for the Inner Person</h1>
+        <p class="hero-subhead fade-up">Gymwear rooted in the earliest traditions of the Christian faith.</p>
+        <a href="#collection" class="btn-gold fade-up">Shop the Collection</a>
+        <a href="#name" class="hero-scroll-link fade-up">
           Scroll to explore
-          <span class="scroll-arrow">&#8595;</span>
+          <span class="hero-scroll-arrow">&#8595;</span>
         </a>
       </div>
     </section>
@@ -85,34 +94,34 @@
     <!-- ============================================
          SCENE 2: THE NAME
          ============================================ -->
-    <section id="name" class="section section-sand">
+    <section id="name" class="section">
       <div class="section-content stagger">
-        <p class="greek-text fade-up">ὁ ὤν</p>
-        <p class="pronunciation fade-up"><em>ho ōn</em></p>
-        <h2 class="reveal-line fade-up">I AM WHO I AM.</h2>
-        <p class="body-text fade-up">The Greek text of God's self-revelation to Moses at the burning bush. Exodus 3:14 in the Septuagint. Before denominations. Before divisions. The oldest surviving declaration of identity in the Judeo-Christian tradition. That's our name.</p>
+        <p class="name-greek fade-up">ὁ ὤν</p>
+        <p class="name-pronunciation fade-up"><em>ho ōn</em></p>
+        <h2 class="name-reveal fade-up">I AM WHO I AM.</h2>
+        <p class="name-body fade-up">The Greek text of God's self-revelation to Moses at the burning bush. Exodus 3:14 in the Septuagint. Before denominations. Before divisions. The oldest surviving declaration of identity in the Judeo-Christian tradition. That's our name.</p>
       </div>
     </section>
 
     <!-- ============================================
          SCENE 3: THE DIFFERENCE
          ============================================ -->
-    <section id="difference" class="section section-dark">
-      <div class="section-content">
+    <section id="difference" class="section">
+      <div class="section-inner">
         <p class="eyebrow fade-up">NOT ANOTHER CHRISTIAN T-SHIRT</p>
-        <h2 class="section-headline fade-up">We don't signal your faith. We deepen it.</h2>
-        <div class="three-columns stagger">
-          <div class="column fade-up">
-            <h3>Rooted in Antiquity</h3>
-            <p>Symbols from pre-schism manuscripts. The earliest visual language of the faith, recovered and recontextualized.</p>
+        <h2 class="difference-headline fade-up">We don't signal your faith. We deepen it.</h2>
+        <div class="difference-columns stagger">
+          <div class="difference-col fade-up">
+            <h3 class="difference-col-title">Rooted in Antiquity</h3>
+            <p class="difference-col-text">Symbols from pre-schism manuscripts. The earliest visual language of the faith, recovered and recontextualized.</p>
           </div>
-          <div class="column fade-up">
-            <h3>Built for the Gym</h3>
-            <p>Premium heavyweight fabrics. Considered construction. Designed for people who train, not just people who post about it.</p>
+          <div class="difference-col fade-up">
+            <h3 class="difference-col-title">Built for the Gym</h3>
+            <p class="difference-col-text">Premium heavyweight fabrics. Considered construction. Designed for people who train, not just people who post about it.</p>
           </div>
-          <div class="column fade-up">
-            <h3>More Than Apparel</h3>
-            <p>Every piece ships with a devotional card. Historical context. Scripture. A reason to look twice at what you're wearing.</p>
+          <div class="difference-col fade-up">
+            <h3 class="difference-col-title">More Than Apparel</h3>
+            <p class="difference-col-text">Every piece ships with a devotional card. Historical context. Scripture. A reason to look twice at what you're wearing.</p>
           </div>
         </div>
       </div>
@@ -121,44 +130,44 @@
     <!-- ============================================
          SCENE 4: FIVE PILLARS
          ============================================ -->
-    <section id="pillars" class="section section-sand">
-      <div class="section-content">
-        <p class="eyebrow eyebrow-dark fade-up">WHAT WE STAND ON</p>
-        <h2 class="section-headline section-headline-dark fade-up">Five Pillars</h2>
-        <div class="pillars-list stagger">
-          <div class="pillar fade-up">
+    <section id="pillars" class="section">
+      <div class="section-inner">
+        <p class="eyebrow fade-up">WHAT WE STAND ON</p>
+        <h2 class="pillars-headline fade-up">Five Pillars</h2>
+        <div class="pillars-grid stagger">
+          <div class="pillar-block fade-up">
             <span class="pillar-numeral">I.</span>
-            <div class="pillar-body">
-              <h3>People First</h3>
-              <p>Every decision asks one question: does this serve the person wearing it?</p>
+            <div class="pillar-content">
+              <h3 class="pillar-title">People First</h3>
+              <p class="pillar-desc">Every decision asks one question: does this serve the person wearing it?</p>
             </div>
           </div>
-          <div class="pillar fade-up">
+          <div class="pillar-block fade-up">
             <span class="pillar-numeral">II.</span>
-            <div class="pillar-body">
-              <h3>Commitment to Jesus</h3>
-              <p>Not as a slogan. As a practice. We show up on the hard days.</p>
+            <div class="pillar-content">
+              <h3 class="pillar-title">Commitment to Jesus</h3>
+              <p class="pillar-desc">Not as a slogan. As a practice. We show up on the hard days.</p>
             </div>
           </div>
-          <div class="pillar fade-up">
+          <div class="pillar-block fade-up">
             <span class="pillar-numeral">III.</span>
-            <div class="pillar-body">
-              <h3>Educational</h3>
-              <p>Every symbol has a story. We connect historical findings to the Bible so you can understand where your faith has been.</p>
+            <div class="pillar-content">
+              <h3 class="pillar-title">Educational</h3>
+              <p class="pillar-desc">Every symbol has a story. We connect historical findings to the Bible so you can understand where your faith has been.</p>
             </div>
           </div>
-          <div class="pillar fade-up">
+          <div class="pillar-block fade-up">
             <span class="pillar-numeral">IV.</span>
-            <div class="pillar-body">
-              <h3>Truth and Authenticity</h3>
-              <p>We're not perfect and we don't pretend to be. We're vulnerable about our struggles because that's where Christ meets us.</p>
+            <div class="pillar-content">
+              <h3 class="pillar-title">Truth and Authenticity</h3>
+              <p class="pillar-desc">We're not perfect and we don't pretend to be. We're vulnerable about our struggles because that's where Christ meets us.</p>
             </div>
           </div>
-          <div class="pillar fade-up">
+          <div class="pillar-block fade-up">
             <span class="pillar-numeral">V.</span>
-            <div class="pillar-body">
-              <h3>Community</h3>
-              <p>Iron sharpens iron. This brand exists to connect people who take both training and faith seriously.</p>
+            <div class="pillar-content">
+              <h3 class="pillar-title">Community</h3>
+              <p class="pillar-desc">Iron sharpens iron. This brand exists to connect people who take both training and faith seriously.</p>
             </div>
           </div>
         </div>
@@ -168,8 +177,8 @@
     <!-- ============================================
          SCENE 5: THE MISSION
          ============================================ -->
-    <section id="mission" class="section section-dark">
-      <div class="section-content mission-content">
+    <section id="mission" class="section">
+      <div class="section-content">
         <blockquote class="mission-quote stagger">
           <span class="fade-up">Jesus loves you exactly as you are.</span>
           <span class="fade-up">And He loves you too much to leave you there.</span>
@@ -181,38 +190,34 @@
     <!-- ============================================
          SCENE 6: THE COLLECTION (REVENUE SCENE)
          ============================================ -->
-    <section id="collection" class="section section-sand">
-      <div class="section-content">
-        <p class="eyebrow eyebrow-dark fade-up">THE COLLECTION</p>
-        <h2 class="section-headline section-headline-dark fade-up">Training Gear for Those Who Bear His Image</h2>
+    <section id="collection" class="section">
+      <div class="section-inner">
+        <p class="eyebrow fade-up">THE COLLECTION</p>
+        <h2 class="collection-headline fade-up">Training Gear for Those Who Bear His Image</h2>
         <div class="product-grid">
           <div class="product-card scale-in">
-            <div class="product-image-placeholder">
-              <div style="width:100%;aspect-ratio:4/5;background:#D4C5A9;display:flex;align-items:center;justify-content:center;border-radius:8px;">
-                <span style="color:#4A5568;font-style:italic;">Product Image</span>
+            <div class="product-image-placeholder">Product Image</div>
+            <div class="product-card-body">
+              <h3 class="product-title">Chi-Rho Heavyweight Hoodie</h3>
+              <p class="product-subtitle">The oldest Christian monogram, recovered from pre-Nicene manuscripts. Mirror-reversed to read correctly in your reflection.</p>
+              <p class="product-price">$68</p>
+              <div id="shopify-product-1" class="shopify-buy-button-placeholder">
+                <!-- ARTHUR: Paste Shopify Buy Button embed code here -->
+                <button class="btn-gold" disabled>Add to Cart — Coming Soon</button>
               </div>
-            </div>
-            <h3>Chi-Rho Heavyweight Hoodie</h3>
-            <p class="product-description">The oldest Christian monogram, recovered from pre-Nicene manuscripts. Mirror-reversed to read correctly in your reflection.</p>
-            <p class="product-price">$68</p>
-            <div id="shopify-product-1" class="shopify-buy-button-placeholder">
-              <!-- ARTHUR: Paste Shopify Buy Button embed code here -->
-              <button class="btn-gold" disabled>Add to Cart — Coming Soon</button>
             </div>
           </div>
 
           <div class="product-card scale-in">
-            <div class="product-image-placeholder">
-              <div style="width:100%;aspect-ratio:4/5;background:#D4C5A9;display:flex;align-items:center;justify-content:center;border-radius:8px;">
-                <span style="color:#4A5568;font-style:italic;">Product Image</span>
+            <div class="product-image-placeholder">Product Image</div>
+            <div class="product-card-body">
+              <h3 class="product-title">Staurogram Training Hoodie</h3>
+              <p class="product-subtitle">One of the earliest cruciform symbols in Christian manuscripts, predating the Latin cross by centuries.</p>
+              <p class="product-price">$68</p>
+              <div id="shopify-product-2" class="shopify-buy-button-placeholder">
+                <!-- ARTHUR: Paste Shopify Buy Button embed code here -->
+                <button class="btn-gold" disabled>Add to Cart — Coming Soon</button>
               </div>
-            </div>
-            <h3>Staurogram Training Hoodie</h3>
-            <p class="product-description">One of the earliest cruciform symbols in Christian manuscripts, predating the Latin cross by centuries.</p>
-            <p class="product-price">$68</p>
-            <div id="shopify-product-2" class="shopify-buy-button-placeholder">
-              <!-- ARTHUR: Paste Shopify Buy Button embed code here -->
-              <button class="btn-gold" disabled>Add to Cart — Coming Soon</button>
             </div>
           </div>
         </div>
@@ -223,25 +228,37 @@
     <!-- ============================================
          SCENE 7: THE JOURNAL
          ============================================ -->
-    <section id="journal" class="section section-dark section-short">
-      <div class="section-content">
+    <section id="journal" class="section">
+      <div class="section-inner">
         <p class="eyebrow fade-up">THE JOURNAL</p>
-        <h2 class="section-headline fade-up">Go Deeper</h2>
-        <div class="blog-grid stagger">
-          <a href="/blog/what-does-hon-mean.html" class="blog-card fade-up">
-            <h3>What Does HŌN Mean?</h3>
-            <p class="blog-excerpt">The ancient Greek phrase behind our name — and why it matters more than any denomination.</p>
-            <span class="blog-meta">5 min read <span class="arrow">&rarr;</span></span>
+        <h2 class="journal-headline fade-up">Go Deeper</h2>
+        <div class="journal-grid stagger">
+          <a href="/blog/what-does-hon-mean.html" class="journal-card fade-up">
+            <p class="journal-card-tag">THE JOURNAL</p>
+            <h3 class="journal-card-title">What Does HŌN Mean?</h3>
+            <p class="journal-card-excerpt">The ancient Greek phrase behind our name — and why it matters more than any denomination.</p>
+            <div class="journal-card-meta">
+              <span class="journal-card-readtime">5 min read</span>
+              <span class="journal-card-link">Read <span class="journal-card-link-arrow">&rarr;</span></span>
+            </div>
           </a>
-          <a href="/blog/chi-rho-monogram.html" class="blog-card fade-up">
-            <h3>The Chi-Rho: The Oldest Christian Monogram</h3>
-            <p class="blog-excerpt">From second-century manuscripts to Constantine's banner — the story of the first symbol of Christ.</p>
-            <span class="blog-meta">6 min read <span class="arrow">&rarr;</span></span>
+          <a href="/blog/chi-rho-monogram.html" class="journal-card fade-up">
+            <p class="journal-card-tag">THE JOURNAL</p>
+            <h3 class="journal-card-title">The Chi-Rho: The Oldest Christian Monogram</h3>
+            <p class="journal-card-excerpt">From second-century manuscripts to Constantine's banner — the story of the first symbol of Christ.</p>
+            <div class="journal-card-meta">
+              <span class="journal-card-readtime">6 min read</span>
+              <span class="journal-card-link">Read <span class="journal-card-link-arrow">&rarr;</span></span>
+            </div>
           </a>
-          <a href="/blog/gym-devotional-time.html" class="blog-card fade-up">
-            <h3>Why Your Gym Time Is Already Devotional Time</h3>
-            <p class="blog-excerpt">Paul saw it. The early Church lived it. Your training is more spiritual than you think.</p>
-            <span class="blog-meta">4 min read <span class="arrow">&rarr;</span></span>
+          <a href="/blog/gym-devotional-time.html" class="journal-card fade-up">
+            <p class="journal-card-tag">THE JOURNAL</p>
+            <h3 class="journal-card-title">Why Your Gym Time Is Already Devotional Time</h3>
+            <p class="journal-card-excerpt">Paul saw it. The early Church lived it. Your training is more spiritual than you think.</p>
+            <div class="journal-card-meta">
+              <span class="journal-card-readtime">4 min read</span>
+              <span class="journal-card-link">Read <span class="journal-card-link-arrow">&rarr;</span></span>
+            </div>
           </a>
         </div>
       </div>
@@ -250,18 +267,16 @@
     <!-- ============================================
          SCENE 8: EMAIL CAPTURE
          ============================================ -->
-    <section id="subscribe" class="section section-dark section-compact">
-      <div class="section-content subscribe-content">
-        <h2 class="section-headline fade-up">Join the Community</h2>
+    <section id="subscribe" class="section">
+      <div class="section-content">
+        <h2 class="subscribe-headline fade-up">Join the Community</h2>
         <p class="subscribe-subtext fade-up">Historical deep dives. Training wisdom. Honest devotional writing. Delivered to your inbox.</p>
         <form class="email-capture fade-up" action="#" method="POST">
           <!-- ARTHUR: Replace this entire form with ConvertKit or Mailchimp embed -->
-          <div class="email-form-row">
-            <input type="email" placeholder="Your email" required>
-            <button type="submit" class="btn-gold">I'm In</button>
-          </div>
-          <p class="form-disclaimer">No spam. Unsubscribe anytime.</p>
+          <input type="email" placeholder="Your email" required>
+          <button type="submit" class="btn-gold">I'm In</button>
         </form>
+        <p class="subscribe-privacy fade-up">No spam. Unsubscribe anytime.</p>
       </div>
     </section>
 
@@ -270,41 +285,36 @@
   <!-- ============================================
        SCENE 9: FOOTER
        ============================================ -->
-  <footer id="footer" class="site-footer">
+  <footer id="footer">
     <div class="footer-inner">
       <div class="footer-columns">
         <div class="footer-col">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="#collection">All Products</a></li>
-            <li><a href="#collection">Hoodies</a></li>
-            <li><a href="#collection">Training Shirts</a></li>
-            <li><a href="#">Gift Cards</a></li>
-          </ul>
+          <h4 class="footer-col-title">Shop</h4>
+          <a href="#collection">All Products</a>
+          <a href="#collection">Hoodies</a>
+          <a href="#collection">Training Shirts</a>
+          <a href="#">Gift Cards</a>
         </div>
         <div class="footer-col">
-          <h4>Learn</h4>
-          <ul>
-            <li><a href="/blog/">Journal</a></li>
-            <li><a href="/faq/">FAQ</a></li>
-            <li><a href="#">Size Guide</a></li>
-          </ul>
+          <h4 class="footer-col-title">Learn</h4>
+          <a href="/blog/">Journal</a>
+          <a href="/faq/">FAQ</a>
+          <a href="#">Size Guide</a>
         </div>
         <div class="footer-col">
-          <h4>Connect</h4>
-          <ul>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="mailto:hello@honapparel.com">Email Us</a></li>
-          </ul>
+          <h4 class="footer-col-title">Connect</h4>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="mailto:hello@honapparel.com">Email Us</a>
         </div>
       </div>
       <div class="footer-bottom">
         <p class="footer-tagline">ὁ ὤν — The One Who Is</p>
-        <p class="footer-copyright">&copy; 2026 HŌN. Athletic Apparel for the Inner Person. Salinas, California.</p>
-        <p class="footer-legal">
-          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-        </p>
+        <div class="footer-legal">
+          <span>&copy; 2026 HŌN. Athletic Apparel for the Inner Person. Salinas, California.</span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>

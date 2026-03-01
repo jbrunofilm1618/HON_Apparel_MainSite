@@ -33,20 +33,14 @@
     gtag('config', 'G-XXXXXXXXXX');
   </script>
 </head>
-<body>
+<body class="blog-page">
 
   <!-- ============================================
        NAVIGATION
        ============================================ -->
-  <header class="site-nav" id="site-nav">
+  <header class="site-nav scrolled" id="site-nav">
     <nav class="nav-inner">
-      <a href="/" class="nav-logo">HŌN</a>
-
-      <button class="nav-toggle" aria-label="Toggle navigation menu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
+      <a href="/" class="nav-wordmark">HŌN</a>
 
       <ul class="nav-links">
         <li><a href="/#name" data-section="name">Story</a></li>
@@ -55,15 +49,30 @@
         <li><a href="/#subscribe" data-section="subscribe">Subscribe</a></li>
       </ul>
 
-      <a href="#" class="nav-cart" aria-label="Shopping cart">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <path d="M16 10a4 4 0 01-8 0"></path>
-        </svg>
-      </a>
+      <div class="nav-mobile-controls">
+        <button class="nav-cart-icon" aria-label="Shopping cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 01-8 0"></path>
+          </svg>
+        </button>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </nav>
   </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/#name">Story</a>
+    <a href="/#collection">Collection</a>
+    <a href="/blog/">Journal</a>
+    <a href="/#subscribe">Subscribe</a>
+  </div>
 
   <main>
 
@@ -82,24 +91,24 @@
          ============================================ -->
     <section class="section section-sand blog-index-grid">
       <div class="section-content">
-        <div class="blog-grid stagger">
+        <div class="journal-grid stagger">
 
-          <a href="/blog/what-does-hon-mean.html" class="blog-card fade-up">
-            <h3>What Does HŌN Mean?</h3>
-            <p class="blog-excerpt">The ancient Greek phrase behind our name — and why it matters more than any denomination.</p>
-            <span class="blog-meta">March 1, 2026 &middot; 5 min read <span class="arrow">&rarr;</span></span>
+          <a href="/blog/what-does-hon-mean.html" class="journal-card fade-up">
+            <h3 class="journal-card-title">What Does HŌN Mean?</h3>
+            <p class="journal-card-excerpt">The ancient Greek phrase behind our name — and why it matters more than any denomination.</p>
+            <span class="journal-card-meta">March 1, 2026 &middot; 5 min read <span class="arrow">&rarr;</span></span>
           </a>
 
-          <a href="/blog/chi-rho-monogram.html" class="blog-card fade-up">
-            <h3>The Chi-Rho: The Oldest Christian Monogram</h3>
-            <p class="blog-excerpt">From second-century manuscripts to Constantine's banner — the story of the first symbol of Christ.</p>
-            <span class="blog-meta">March 1, 2026 &middot; 6 min read <span class="arrow">&rarr;</span></span>
+          <a href="/blog/chi-rho-monogram.html" class="journal-card fade-up">
+            <h3 class="journal-card-title">The Chi-Rho: The Oldest Christian Monogram</h3>
+            <p class="journal-card-excerpt">From second-century manuscripts to Constantine's banner — the story of the first symbol of Christ.</p>
+            <span class="journal-card-meta">March 1, 2026 &middot; 6 min read <span class="arrow">&rarr;</span></span>
           </a>
 
-          <a href="/blog/gym-devotional-time.html" class="blog-card fade-up">
-            <h3>Why Your Gym Time Is Already Devotional Time</h3>
-            <p class="blog-excerpt">Paul saw it. The early Church lived it. Your training is more spiritual than you think.</p>
-            <span class="blog-meta">March 1, 2026 &middot; 4 min read <span class="arrow">&rarr;</span></span>
+          <a href="/blog/gym-devotional-time.html" class="journal-card fade-up">
+            <h3 class="journal-card-title">Why Your Gym Time Is Already Devotional Time</h3>
+            <p class="journal-card-excerpt">Paul saw it. The early Church lived it. Your training is more spiritual than you think.</p>
+            <span class="journal-card-meta">March 1, 2026 &middot; 4 min read <span class="arrow">&rarr;</span></span>
           </a>
 
         </div>
@@ -111,41 +120,36 @@
   <!-- ============================================
        FOOTER
        ============================================ -->
-  <footer id="footer" class="site-footer">
+  <footer id="footer">
     <div class="footer-inner">
       <div class="footer-columns">
         <div class="footer-col">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="/#collection">All Products</a></li>
-            <li><a href="/#collection">Hoodies</a></li>
-            <li><a href="/#collection">Training Shirts</a></li>
-            <li><a href="#">Gift Cards</a></li>
-          </ul>
+          <h4 class="footer-col-title">Shop</h4>
+          <a href="/#collection">All Products</a>
+          <a href="/#collection">Hoodies</a>
+          <a href="/#collection">Training Shirts</a>
+          <a href="#">Gift Cards</a>
         </div>
         <div class="footer-col">
-          <h4>Learn</h4>
-          <ul>
-            <li><a href="/blog/">Journal</a></li>
-            <li><a href="/faq/">FAQ</a></li>
-            <li><a href="#">Size Guide</a></li>
-          </ul>
+          <h4 class="footer-col-title">Learn</h4>
+          <a href="/blog/">Journal</a>
+          <a href="/faq/">FAQ</a>
+          <a href="#">Size Guide</a>
         </div>
         <div class="footer-col">
-          <h4>Connect</h4>
-          <ul>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="mailto:hello@honapparel.com">Email Us</a></li>
-          </ul>
+          <h4 class="footer-col-title">Connect</h4>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="mailto:hello@honapparel.com">Email Us</a>
         </div>
       </div>
       <div class="footer-bottom">
         <p class="footer-tagline">ὁ ὤν — The One Who Is</p>
-        <p class="footer-copyright">&copy; 2026 HŌN. Athletic Apparel for the Inner Person. Salinas, California.</p>
-        <p class="footer-legal">
-          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-        </p>
+        <div class="footer-legal">
+          <span>&copy; 2026 HŌN. Athletic Apparel for the Inner Person. Salinas, California.</span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>
