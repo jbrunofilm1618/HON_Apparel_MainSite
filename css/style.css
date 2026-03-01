@@ -1,0 +1,2095 @@
+/* ==========================================================================
+   HON Athletic Apparel — Main Stylesheet
+   Mobile-first, vanilla CSS. No frameworks.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+
+:root {
+  --color-dark: #0F1B2D;
+  --color-gold: #C49B2A;
+  --color-sage: #6B8F71;
+  --color-sand: #F5F0E8;
+  --color-slate: #4A5568;
+  --color-sand-dark: #D4C5A9;
+  --color-white: #FAFAF8;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-uncial: 'Uncial Antiqua', cursive;
+  --max-content: 680px;
+  --max-wide: 1200px;
+  --transition-base: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 1.0s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-dark);
+  background-color: var(--color-dark);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-base);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY UTILITIES
+   -------------------------------------------------------------------------- */
+
+.eyebrow {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .eyebrow {
+    font-size: 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. NAVIGATION
+   -------------------------------------------------------------------------- */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  transition: background var(--transition-base), backdrop-filter var(--transition-base);
+}
+
+.site-nav.scrolled {
+  background: rgba(15, 27, 45, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@media (min-width: 768px) {
+  .site-nav {
+    padding: 20px 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-nav {
+    padding: 20px 60px;
+  }
+}
+
+/* Wordmark */
+.nav-wordmark {
+  font-family: var(--font-uncial);
+  font-size: 22px;
+  color: var(--color-gold);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: opacity var(--transition-base);
+}
+
+.nav-wordmark:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .nav-wordmark {
+    font-size: 26px;
+  }
+}
+
+/* Desktop links */
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+.nav-links a {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.5px;
+  transition: color var(--transition-base);
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--color-white);
+}
+
+.nav-links a.active {
+  color: var(--color-gold);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width var(--transition-base);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Mobile controls */
+.nav-mobile-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .nav-mobile-controls {
+    display: none;
+  }
+}
+
+.nav-cart-icon,
+.nav-hamburger {
+  color: var(--color-white);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  transition: color var(--transition-base);
+}
+
+.nav-cart-icon:hover,
+.nav-hamburger:hover {
+  color: var(--color-gold);
+}
+
+.nav-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  gap: 5px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: rgba(15, 27, 45, 0.98);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--color-white);
+  transition: color var(--transition-base);
+}
+
+.mobile-menu a:hover {
+  color: var(--color-gold);
+}
+
+.mobile-menu a.active {
+  color: var(--color-gold);
+}
+
+/* --------------------------------------------------------------------------
+   5. SECTION BASE STYLES
+   -------------------------------------------------------------------------- */
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px 40px;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 100px 40px 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 120px 60px 80px;
+  }
+}
+
+.section-inner {
+  width: 100%;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.section-content {
+  width: 100%;
+  max-width: var(--max-content);
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   6. SCENE 1 — HERO (#hero)
+   -------------------------------------------------------------------------- */
+
+#hero {
+  background: var(--color-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-headline {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-white);
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+@media (min-width: 768px) {
+  .hero-headline {
+    font-size: 58px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-headline {
+    font-size: 72px;
+  }
+}
+
+.hero-subhead {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-gold);
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .hero-subhead {
+    font-size: 22px;
+    margin-bottom: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-subhead {
+    font-size: 24px;
+  }
+}
+
+.hero-cta {
+  margin-bottom: 48px;
+}
+
+.hero-scroll-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  letter-spacing: 1px;
+  transition: color var(--transition-base);
+}
+
+.hero-scroll-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-scroll-arrow {
+  display: inline-block;
+  margin-top: 8px;
+  animation: bounce-arrow 2s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* Hero staggered entrance */
+.hero-content .fade-up:nth-child(1) { transition-delay: 0.1s; }
+.hero-content .fade-up:nth-child(2) { transition-delay: 0.3s; }
+.hero-content .fade-up:nth-child(3) { transition-delay: 0.5s; }
+.hero-content .fade-up:nth-child(4) { transition-delay: 0.7s; }
+
+/* --------------------------------------------------------------------------
+   7. SCENE 2 — THE NAME (#name)
+   -------------------------------------------------------------------------- */
+
+#name {
+  background: var(--color-sand);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.name-greek {
+  font-family: var(--font-uncial);
+  font-size: 64px;
+  color: var(--color-gold);
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .name-greek {
+    font-size: 96px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .name-greek {
+    font-size: 120px;
+  }
+}
+
+.name-pronunciation {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--color-slate);
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .name-pronunciation {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+}
+
+.name-reveal {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .name-reveal {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .name-reveal {
+    font-size: 36px;
+  }
+}
+
+.name-body {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-slate);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .name-body {
+    font-size: 18px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. SCENE 3 — THE DIFFERENCE (#difference)
+   -------------------------------------------------------------------------- */
+
+#difference {
+  background: var(--color-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.difference-headline {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.25;
+  margin-bottom: 48px;
+  max-width: 700px;
+}
+
+@media (min-width: 768px) {
+  .difference-headline {
+    font-size: 36px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .difference-headline {
+    font-size: 44px;
+    margin-bottom: 72px;
+  }
+}
+
+.difference-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: var(--max-wide);
+}
+
+@media (min-width: 1024px) {
+  .difference-columns {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+.difference-col {
+  flex: 1;
+  text-align: left;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-gold);
+}
+
+.difference-col-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .difference-col-title {
+    font-size: 22px;
+  }
+}
+
+.difference-col-text {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 768px) {
+  .difference-col-text {
+    font-size: 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. SCENE 4 — FIVE PILLARS (#pillars)
+   -------------------------------------------------------------------------- */
+
+#pillars {
+  background: var(--color-sand);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.pillars-headline {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-dark);
+  line-height: 1.25;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .pillars-headline {
+    font-size: 36px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pillars-headline {
+    font-size: 44px;
+    margin-bottom: 72px;
+  }
+}
+
+.pillars-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .pillars-grid {
+    gap: 40px;
+  }
+}
+
+.pillar-block {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .pillar-block {
+    gap: 24px;
+  }
+}
+
+.pillar-numeral {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-gold);
+  letter-spacing: 2px;
+  min-width: 40px;
+  padding-top: 3px;
+}
+
+@media (min-width: 768px) {
+  .pillar-numeral {
+    font-size: 15px;
+    min-width: 50px;
+  }
+}
+
+.pillar-content {
+  flex: 1;
+}
+
+.pillar-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .pillar-title {
+    font-size: 22px;
+  }
+}
+
+.pillar-desc {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-slate);
+}
+
+@media (min-width: 768px) {
+  .pillar-desc {
+    font-size: 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. SCENE 5 — THE MISSION (#mission)
+   -------------------------------------------------------------------------- */
+
+#mission {
+  background: var(--color-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.mission-quote {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-white);
+  line-height: 1.45;
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+
+@media (min-width: 768px) {
+  .mission-quote {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mission-quote {
+    font-size: 40px;
+  }
+}
+
+.mission-attribution {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--color-gold);
+  font-style: normal;
+}
+
+@media (min-width: 768px) {
+  .mission-attribution {
+    font-size: 16px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. SCENE 6 — THE COLLECTION (#collection)
+   -------------------------------------------------------------------------- */
+
+#collection {
+  background: var(--color-sand);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.collection-headline {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-dark);
+  line-height: 1.25;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .collection-headline {
+    font-size: 36px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .collection-headline {
+    font-size: 44px;
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  width: 100%;
+  max-width: 900px;
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+}
+
+.product-card {
+  background: var(--color-white);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(15, 27, 45, 0.1);
+}
+
+.product-image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--color-sand-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-slate);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.product-card-body {
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .product-card-body {
+    padding: 24px;
+  }
+}
+
+.product-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .product-title {
+    font-size: 20px;
+  }
+}
+
+.product-subtitle {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--color-slate);
+  margin-bottom: 12px;
+}
+
+.product-price {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 16px;
+}
+
+.shopify-buy-button-placeholder {
+  width: 100%;
+  padding: 12px 24px;
+  background: var(--color-gold);
+  color: var(--color-dark);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.shopify-buy-button-placeholder:hover {
+  background: #b38d24;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   12. SCENE 7 — THE JOURNAL (#journal)
+   -------------------------------------------------------------------------- */
+
+#journal {
+  background: var(--color-dark);
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+@media (min-width: 768px) {
+  #journal {
+    min-height: 60vh;
+    padding: 100px 40px 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #journal {
+    min-height: 70vh;
+    padding: 120px 60px 80px;
+  }
+}
+
+.journal-headline {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.25;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .journal-headline {
+    font-size: 36px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .journal-headline {
+    font-size: 44px;
+  }
+}
+
+.journal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: var(--max-wide);
+}
+
+@media (min-width: 768px) {
+  .journal-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .journal-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+.journal-card {
+  background: var(--color-sand);
+  border-radius: 8px;
+  padding: 28px 24px;
+  text-align: left;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.journal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .journal-card {
+    padding: 32px 28px;
+  }
+}
+
+.journal-card-tag {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.journal-card-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .journal-card-title {
+    font-size: 22px;
+  }
+}
+
+.journal-card-excerpt {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-slate);
+  margin-bottom: 16px;
+}
+
+.journal-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.journal-card-readtime {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--color-slate);
+  font-style: italic;
+}
+
+.journal-card-link {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--color-gold);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap var(--transition-base);
+}
+
+.journal-card-link:hover {
+  gap: 8px;
+}
+
+.journal-card-link-arrow {
+  transition: transform var(--transition-base);
+}
+
+.journal-card:hover .journal-card-link-arrow {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   13. SCENE 8 — EMAIL CAPTURE (#subscribe)
+   -------------------------------------------------------------------------- */
+
+#subscribe {
+  background: var(--color-dark);
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+@media (min-width: 768px) {
+  #subscribe {
+    min-height: 50vh;
+    padding: 80px 40px 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #subscribe {
+    min-height: 60vh;
+    padding: 100px 60px 80px;
+  }
+}
+
+.subscribe-headline {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .subscribe-headline {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .subscribe-headline {
+    font-size: 40px;
+  }
+}
+
+.subscribe-subtext {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 36px;
+  max-width: 480px;
+}
+
+@media (min-width: 768px) {
+  .subscribe-subtext {
+    font-size: 18px;
+    margin-bottom: 44px;
+  }
+}
+
+.email-capture {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+}
+
+@media (min-width: 768px) {
+  .email-capture {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+
+.email-capture input[type="email"] {
+  flex: 1;
+  padding: 14px 20px;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  border-radius: 4px;
+  transition: border-color var(--transition-base), background var(--transition-base);
+}
+
+@media (min-width: 768px) {
+  .email-capture input[type="email"] {
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+  }
+}
+
+.email-capture input[type="email"]::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.email-capture input[type="email"]:focus {
+  border-color: var(--color-gold);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.email-capture button {
+  padding: 14px 28px;
+  background: var(--color-gold);
+  color: var(--color-dark);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition-base), transform var(--transition-base);
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .email-capture button {
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.email-capture button:hover {
+  background: #b38d24;
+  transform: translateY(-1px);
+}
+
+.subscribe-privacy {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 16px;
+}
+
+.subscribe-privacy a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: underline;
+  transition: color var(--transition-base);
+}
+
+.subscribe-privacy a:hover {
+  color: var(--color-gold);
+}
+
+/* --------------------------------------------------------------------------
+   14. SCENE 9 — FOOTER (#footer)
+   -------------------------------------------------------------------------- */
+
+#footer {
+  background: #0A1322;
+  padding: 60px 20px 32px;
+}
+
+@media (min-width: 768px) {
+  #footer {
+    padding: 80px 40px 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #footer {
+    padding: 100px 60px 48px;
+  }
+}
+
+.footer-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .footer-columns {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+}
+
+.footer-col-title {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .footer-col-title {
+    margin-bottom: 20px;
+  }
+}
+
+.footer-col a {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 10px;
+  transition: color var(--transition-base);
+}
+
+.footer-col a:hover {
+  color: var(--color-gold);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer-tagline {
+  font-family: var(--font-uncial);
+  font-size: 18px;
+  color: var(--color-gold);
+}
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+}
+
+@media (min-width: 768px) {
+  .footer-legal {
+    justify-content: flex-end;
+  }
+}
+
+.footer-legal span,
+.footer-legal a {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.footer-legal a {
+  transition: color var(--transition-base);
+}
+
+.footer-legal a:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   15. BUTTONS
+   -------------------------------------------------------------------------- */
+
+.btn-gold {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--color-gold);
+  color: var(--color-dark);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.btn-gold:hover {
+  background: #b38d24;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(196, 155, 42, 0.25);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 14px 36px;
+  background: transparent;
+  color: var(--color-white);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: border-color var(--transition-base), color var(--transition-base), background var(--transition-base);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-white);
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   16. ANIMATION CLASSES
+   -------------------------------------------------------------------------- */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.fade-in.visible {
+  opacity: 1;
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children */
+.stagger > *:nth-child(1) { transition-delay: 0s; }
+.stagger > *:nth-child(2) { transition-delay: 0.15s; }
+.stagger > *:nth-child(3) { transition-delay: 0.15s; }
+.stagger > *:nth-child(4) { transition-delay: 0.45s; }
+.stagger > *:nth-child(5) { transition-delay: 0.6s; }
+
+/* --------------------------------------------------------------------------
+   17. BLOG ARTICLE STYLES
+   -------------------------------------------------------------------------- */
+
+.blog-page {
+  background: var(--color-sand);
+  min-height: 100vh;
+}
+
+.blog-article {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 120px 20px 80px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-dark);
+}
+
+@media (min-width: 768px) {
+  .blog-article {
+    padding: 140px 40px 100px;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-article {
+    font-size: 20px;
+    padding: 160px 40px 120px;
+  }
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 13px;
+  color: var(--color-slate);
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.breadcrumb a {
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-dark);
+  text-decoration: underline;
+}
+
+.breadcrumb .separator {
+  color: var(--color-slate);
+  opacity: 0.5;
+}
+
+/* Blog hero block */
+.blog-hero {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .blog-hero {
+    margin-bottom: 64px;
+  }
+}
+
+.blog-hero-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 16px;
+}
+
+.blog-hero-title {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-dark);
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .blog-hero-title {
+    font-size: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-hero-title {
+    font-size: 48px;
+  }
+}
+
+.blog-hero-meta {
+  font-size: 14px;
+  color: var(--color-slate);
+  font-style: italic;
+}
+
+.blog-hero-image {
+  width: 100%;
+  margin-top: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.blog-hero-image img {
+  width: 100%;
+  display: block;
+}
+
+/* Blog body typography */
+.blog-article h2 {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-top: 48px;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .blog-article h2 {
+    font-size: 30px;
+  }
+}
+
+.blog-article h3 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-top: 36px;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.blog-article p {
+  margin-bottom: 24px;
+}
+
+.blog-article blockquote {
+  margin: 32px 0;
+  padding: 24px 28px;
+  border-left: 3px solid var(--color-gold);
+  background: rgba(196, 155, 42, 0.06);
+  font-style: italic;
+  color: var(--color-dark);
+  border-radius: 0 6px 6px 0;
+}
+
+.blog-article ul,
+.blog-article ol {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.blog-article ul {
+  list-style: disc;
+}
+
+.blog-article ol {
+  list-style: decimal;
+}
+
+.blog-article li {
+  margin-bottom: 8px;
+}
+
+.blog-article a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-base);
+}
+
+.blog-article a:hover {
+  color: var(--color-dark);
+}
+
+.blog-article img {
+  width: 100%;
+  border-radius: 8px;
+  margin: 32px 0;
+}
+
+.blog-article strong {
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+/* Related posts grid */
+.related-posts {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--color-sand-dark);
+}
+
+@media (min-width: 768px) {
+  .related-posts {
+    margin-top: 80px;
+    padding-top: 60px;
+  }
+}
+
+.related-posts-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-dark);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .related-posts-title {
+    font-size: 28px;
+  }
+}
+
+.related-posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .related-posts-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .related-posts-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+.related-post-card {
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: 24px;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.related-post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(15, 27, 45, 0.08);
+}
+
+.related-post-card-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.related-post-card-excerpt {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-slate);
+  margin-bottom: 12px;
+}
+
+.related-post-card-link {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--color-gold);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.related-post-card-link:hover {
+  text-decoration: underline;
+}
+
+/* Product CTA callout (inside blog) */
+.product-cta-callout {
+  margin: 40px 0;
+  padding: 32px;
+  background: var(--color-dark);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .product-cta-callout {
+    padding: 48px;
+  }
+}
+
+.product-cta-callout-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .product-cta-callout-title {
+    font-size: 26px;
+  }
+}
+
+.product-cta-callout-text {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --------------------------------------------------------------------------
+   18. FAQ STYLES
+   -------------------------------------------------------------------------- */
+
+.faq-page {
+  background: var(--color-sand);
+  min-height: 100vh;
+}
+
+.faq-container {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 120px 20px 80px;
+}
+
+@media (min-width: 768px) {
+  .faq-container {
+    padding: 140px 40px 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .faq-container {
+    padding: 160px 40px 120px;
+  }
+}
+
+.faq-page-title {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-dark);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .faq-page-title {
+    font-size: 42px;
+    margin-bottom: 64px;
+  }
+}
+
+.faq-section-title {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.faq-section-title:first-of-type {
+  margin-top: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-sand-dark);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.4;
+  gap: 16px;
+  transition: color var(--transition-base);
+}
+
+@media (min-width: 768px) {
+  .faq-question {
+    font-size: 18px;
+    padding: 24px 0;
+  }
+}
+
+.faq-question:hover {
+  color: var(--color-gold);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: transform var(--transition-base);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--color-slate);
+  border-radius: 1px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+/* Horizontal bar (always visible) */
+.faq-icon::before {
+  width: 16px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Vertical bar (hidden when open) */
+.faq-icon::after {
+  width: 2px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item.open .faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base), padding var(--transition-base);
+}
+
+.faq-item.open .faq-answer {
+  max-height: 500px;
+}
+
+.faq-answer-inner {
+  padding-bottom: 24px;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-slate);
+}
+
+@media (min-width: 768px) {
+  .faq-answer-inner {
+    padding-bottom: 28px;
+  }
+}
+
+.faq-answer-inner p {
+  margin-bottom: 12px;
+}
+
+.faq-answer-inner p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-answer-inner a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-base);
+}
+
+.faq-answer-inner a:hover {
+  color: var(--color-dark);
+}
+
+/* --------------------------------------------------------------------------
+   19. LINK STYLES (contextual)
+   -------------------------------------------------------------------------- */
+
+/* Gold links on dark backgrounds */
+.bg-dark a:not(.btn-gold):not(.btn-secondary):not(.nav-wordmark):not(.nav-links a) {
+  color: var(--color-gold);
+}
+
+.bg-dark a:not(.btn-gold):not(.btn-secondary):hover {
+  text-decoration: underline;
+}
+
+/* Dark links on sand backgrounds */
+.bg-sand a:not(.btn-gold):not(.btn-secondary) {
+  color: var(--color-dark);
+}
+
+.bg-sand a:not(.btn-gold):not(.btn-secondary):hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   20. UTILITY CLASSES
+   -------------------------------------------------------------------------- */
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   21. PRINT
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .site-nav,
+  .mobile-menu,
+  #subscribe,
+  .hero-scroll-link {
+    display: none;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  .section {
+    min-height: auto;
+    page-break-inside: avoid;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   22. REDUCED MOTION
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-up,
+  .fade-in,
+  .scale-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   23. WIDE BREAKPOINT ENHANCEMENTS
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1440px) {
+  .hero-headline {
+    font-size: 80px;
+  }
+
+  .hero-subhead {
+    font-size: 26px;
+  }
+
+  .name-greek {
+    font-size: 140px;
+  }
+
+  .name-reveal {
+    font-size: 40px;
+  }
+
+  .difference-headline,
+  .pillars-headline,
+  .collection-headline {
+    font-size: 48px;
+  }
+
+  .mission-quote {
+    font-size: 44px;
+  }
+
+  .journal-headline,
+  .subscribe-headline {
+    font-size: 44px;
+  }
+
+  .blog-hero-title {
+    font-size: 54px;
+  }
+
+  .faq-page-title {
+    font-size: 48px;
+  }
+}

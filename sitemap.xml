@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://honapparel.com/</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://honapparel.com/blog/</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://honapparel.com/blog/what-does-hon-mean.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://honapparel.com/blog/chi-rho-monogram.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://honapparel.com/blog/gym-devotional-time.html</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://honapparel.com/faq/</loc>
+    <lastmod>2026-03-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+</urlset>
