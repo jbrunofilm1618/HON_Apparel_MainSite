@@ -367,6 +367,9 @@ button {
 
 .hero-content {
   max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-headline {
@@ -415,6 +418,10 @@ button {
 }
 
 .hero-cta {
+  margin-bottom: 48px;
+}
+
+.hero-content .btn-gold {
   margin-bottom: 48px;
 }
 
@@ -766,6 +773,11 @@ button {
   line-height: 1.45;
   max-width: 700px;
   margin: 0 auto 32px;
+}
+
+/* Quote line stacking */
+.mission-quote span {
+  display: block;
 }
 
 @media (min-width: 768px) {
@@ -2122,7 +2134,221 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   23. WIDE BREAKPOINT ENHANCEMENTS
+   23. SECTION MODIFIER CLASSES
+   -------------------------------------------------------------------------- */
+
+.section-dark {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+
+.section-sand {
+  background: var(--color-sand);
+}
+
+.section-compact {
+  min-height: auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.section-short {
+  min-height: auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.subscribe-content {
+  text-align: center;
+}
+
+.eyebrow-dark {
+  color: var(--color-dark);
+}
+
+.section-headline {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.25;
+  margin-bottom: 32px;
+}
+
+.section-headline-dark {
+  color: var(--color-dark);
+}
+
+@media (min-width: 768px) {
+  .section-headline {
+    font-size: 36px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   24. BLOG CTA CALLOUT
+   -------------------------------------------------------------------------- */
+
+.blog-cta {
+  margin: 48px 0;
+  padding: 32px;
+  background: var(--color-dark);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .blog-cta {
+    padding: 48px;
+  }
+}
+
+.blog-cta h3 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-white);
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .blog-cta h3 {
+    font-size: 26px;
+  }
+}
+
+.blog-cta p {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-cta .btn-gold {
+  margin-top: 8px;
+}
+
+.blog-cta-text {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--color-white);
+}
+
+.blog-cta-link {
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.blog-cta-link:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   25. BLOG SUBSCRIBE SECTION (inline)
+   -------------------------------------------------------------------------- */
+
+.blog-subscribe {
+  margin-top: 48px;
+  padding: 40px 0;
+  border-top: 1px solid var(--color-sand-dark);
+  text-align: center;
+}
+
+.blog-subscribe h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-dark);
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .blog-subscribe h2 {
+    font-size: 28px;
+  }
+}
+
+.blog-subscribe p {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--color-slate);
+  margin-bottom: 24px;
+}
+
+.blog-subscribe .email-capture {
+  margin: 0 auto;
+}
+
+.blog-subscribe .email-capture input[type="email"] {
+  background: rgba(15, 27, 45, 0.06);
+  border-color: var(--color-sand-dark);
+  color: var(--color-dark);
+}
+
+.blog-subscribe .email-capture input[type="email"]::placeholder {
+  color: var(--color-slate);
+}
+
+.blog-subscribe .email-capture input[type="email"]:focus {
+  border-color: var(--color-gold);
+  background: rgba(15, 27, 45, 0.1);
+}
+
+.blog-subscribe .subscribe-privacy {
+  color: var(--color-slate);
+}
+
+/* --------------------------------------------------------------------------
+   26. BLOG TITLE ALIASES
+   -------------------------------------------------------------------------- */
+
+.blog-title {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-dark);
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .blog-title {
+    font-size: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-title {
+    font-size: 48px;
+  }
+}
+
+.blog-meta-header,
+.blog-meta-block {
+  font-size: 14px;
+  color: var(--color-slate);
+  font-style: italic;
+}
+
+.blog-meta-header .meta-separator,
+.blog-meta-block .meta-sep {
+  margin: 0 6px;
+}
+
+.blog-read-time {
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   27. WIDE BREAKPOINT ENHANCEMENTS
    -------------------------------------------------------------------------- */
 
 @media (min-width: 1440px) {
@@ -2157,7 +2383,8 @@ button {
     font-size: 44px;
   }
 
-  .blog-hero-title {
+  .blog-hero-title,
+  .blog-title {
     font-size: 54px;
   }
 
