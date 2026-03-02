@@ -124,6 +124,16 @@ button {
   -webkit-backdrop-filter: blur(10px);
 }
 
+/* Nav inner — flex container for logo, links, mobile controls */
+.nav-inner {
+  width: 100%;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media (min-width: 768px) {
   .site-nav {
     padding: 20px 40px;
@@ -357,6 +367,9 @@ button {
 
 .hero-content {
   max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-headline {
@@ -408,6 +421,10 @@ button {
   margin-bottom: 48px;
 }
 
+.hero-content .btn-gold {
+  margin-bottom: 48px;
+}
+
 .hero-scroll-link {
   display: inline-flex;
   flex-direction: column;
@@ -438,10 +455,10 @@ button {
 }
 
 /* Hero staggered entrance */
-.hero-content .fade-up:nth-child(1) { transition-delay: 0.1s; }
-.hero-content .fade-up:nth-child(2) { transition-delay: 0.3s; }
-.hero-content .fade-up:nth-child(3) { transition-delay: 0.5s; }
-.hero-content .fade-up:nth-child(4) { transition-delay: 0.7s; }
+.hero-content .fade-up:nth-child(1) { transition-delay: 0.3s; }
+.hero-content .fade-up:nth-child(2) { transition-delay: 0.6s; }
+.hero-content .fade-up:nth-child(3) { transition-delay: 0.9s; }
+.hero-content .fade-up:nth-child(4) { transition-delay: 1.2s; }
 
 /* --------------------------------------------------------------------------
    7. SCENE 2 — THE NAME (#name)
@@ -758,6 +775,11 @@ button {
   margin: 0 auto 32px;
 }
 
+/* Quote line stacking */
+.mission-quote span {
+  display: block;
+}
+
 @media (min-width: 768px) {
   .mission-quote {
     font-size: 32px;
@@ -922,6 +944,22 @@ button {
 .shopify-buy-button-placeholder:hover {
   background: #b38d24;
   transform: translateY(-1px);
+}
+
+.collection-note {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--color-slate);
+  margin-top: 32px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .collection-note {
+    font-size: 16px;
+    margin-top: 40px;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1452,9 +1490,59 @@ button {
 /* Stagger children */
 .stagger > *:nth-child(1) { transition-delay: 0s; }
 .stagger > *:nth-child(2) { transition-delay: 0.15s; }
-.stagger > *:nth-child(3) { transition-delay: 0.15s; }
+.stagger > *:nth-child(3) { transition-delay: 0.3s; }
 .stagger > *:nth-child(4) { transition-delay: 0.45s; }
 .stagger > *:nth-child(5) { transition-delay: 0.6s; }
+
+/* --------------------------------------------------------------------------
+   16b. BLOG INDEX STYLES
+   -------------------------------------------------------------------------- */
+
+.blog-index-header {
+  min-height: 40vh;
+  padding-top: 140px;
+}
+
+.blog-index-title {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-dark);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .blog-index-title {
+    font-size: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-index-title {
+    font-size: 48px;
+  }
+}
+
+.blog-index-subtext {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--color-slate);
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .blog-index-subtext {
+    font-size: 18px;
+  }
+}
+
+.blog-index-grid {
+  min-height: auto;
+  padding-top: 0;
+}
 
 /* --------------------------------------------------------------------------
    17. BLOG ARTICLE STYLES
@@ -1646,6 +1734,38 @@ button {
   color: var(--color-dark);
 }
 
+/* Prevent blog article link styles from overriding structured components */
+.blog-article .btn-gold,
+.blog-article .btn-secondary {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+
+.blog-article .btn-gold:hover {
+  color: var(--color-dark);
+}
+
+.blog-article .breadcrumb a {
+  text-decoration: none;
+}
+
+.blog-article .journal-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-article .journal-card:hover {
+  color: inherit;
+}
+
+.blog-article .blog-cta a {
+  text-decoration: none;
+}
+
+.blog-article .blog-cta-link {
+  text-decoration: none;
+}
+
 .blog-article img {
   width: 100%;
   border-radius: 8px;
@@ -1655,6 +1775,11 @@ button {
 .blog-article strong {
   font-weight: 700;
   color: var(--color-dark);
+}
+
+/* Journal cards on sand-background pages need white background for contrast */
+.blog-page .journal-card {
+  background: var(--color-white);
 }
 
 /* Related posts grid */
@@ -1920,13 +2045,9 @@ button {
 }
 
 .faq-answer {
-  max-height: 0;
+  height: 0;
   overflow: hidden;
-  transition: max-height var(--transition-base), padding var(--transition-base);
-}
-
-.faq-item.open .faq-answer {
-  max-height: 500px;
+  transition: height var(--transition-base);
 }
 
 .faq-answer-inner {
@@ -2050,7 +2171,221 @@ button {
 }
 
 /* --------------------------------------------------------------------------
-   23. WIDE BREAKPOINT ENHANCEMENTS
+   23. SECTION MODIFIER CLASSES
+   -------------------------------------------------------------------------- */
+
+.section-dark {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+
+.section-sand {
+  background: var(--color-sand);
+}
+
+.section-compact {
+  min-height: auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.section-short {
+  min-height: auto;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.subscribe-content {
+  text-align: center;
+}
+
+.eyebrow-dark {
+  color: var(--color-dark);
+}
+
+.section-headline {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.25;
+  margin-bottom: 32px;
+}
+
+.section-headline-dark {
+  color: var(--color-dark);
+}
+
+@media (min-width: 768px) {
+  .section-headline {
+    font-size: 36px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   24. BLOG CTA CALLOUT
+   -------------------------------------------------------------------------- */
+
+.blog-cta {
+  margin: 48px 0;
+  padding: 32px;
+  background: var(--color-dark);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .blog-cta {
+    padding: 48px;
+  }
+}
+
+.blog-cta h3 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--color-white);
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .blog-cta h3 {
+    font-size: 26px;
+  }
+}
+
+.blog-cta p {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-cta .btn-gold {
+  margin-top: 8px;
+}
+
+.blog-cta-text {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--color-white);
+}
+
+.blog-cta-link {
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.blog-cta-link:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   25. BLOG SUBSCRIBE SECTION (inline)
+   -------------------------------------------------------------------------- */
+
+.blog-subscribe {
+  margin-top: 48px;
+  padding: 40px 0;
+  border-top: 1px solid var(--color-sand-dark);
+  text-align: center;
+}
+
+.blog-subscribe h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-dark);
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .blog-subscribe h2 {
+    font-size: 28px;
+  }
+}
+
+.blog-subscribe p {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--color-slate);
+  margin-bottom: 24px;
+}
+
+.blog-subscribe .email-capture {
+  margin: 0 auto;
+}
+
+.blog-subscribe .email-capture input[type="email"] {
+  background: rgba(15, 27, 45, 0.06);
+  border-color: var(--color-sand-dark);
+  color: var(--color-dark);
+}
+
+.blog-subscribe .email-capture input[type="email"]::placeholder {
+  color: var(--color-slate);
+}
+
+.blog-subscribe .email-capture input[type="email"]:focus {
+  border-color: var(--color-gold);
+  background: rgba(15, 27, 45, 0.1);
+}
+
+.blog-subscribe .subscribe-privacy {
+  color: var(--color-slate);
+}
+
+/* --------------------------------------------------------------------------
+   26. BLOG TITLE ALIASES
+   -------------------------------------------------------------------------- */
+
+.blog-title {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-dark);
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .blog-title {
+    font-size: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-title {
+    font-size: 48px;
+  }
+}
+
+.blog-meta-header,
+.blog-meta-block {
+  font-size: 14px;
+  color: var(--color-slate);
+  font-style: italic;
+}
+
+.blog-meta-header .meta-separator,
+.blog-meta-block .meta-sep {
+  margin: 0 6px;
+}
+
+.blog-read-time {
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   27. WIDE BREAKPOINT ENHANCEMENTS
    -------------------------------------------------------------------------- */
 
 @media (min-width: 1440px) {
@@ -2085,7 +2420,8 @@ button {
     font-size: 44px;
   }
 
-  .blog-hero-title {
+  .blog-hero-title,
+  .blog-title {
     font-size: 54px;
   }
 

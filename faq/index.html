@@ -107,20 +107,14 @@
   }
   </script>
 </head>
-<body>
+<body class="faq-page">
 
   <!-- ============================================
        NAVIGATION
        ============================================ -->
-  <header class="site-nav" id="site-nav">
+  <header class="site-nav scrolled" id="site-nav">
     <nav class="nav-inner">
-      <a href="/" class="nav-logo">HŌN</a>
-
-      <button class="nav-toggle" aria-label="Toggle navigation menu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
+      <a href="/" class="nav-wordmark">HŌN</a>
 
       <ul class="nav-links">
         <li><a href="/#name" data-section="name">Story</a></li>
@@ -129,158 +123,168 @@
         <li><a href="/#subscribe" data-section="subscribe">Subscribe</a></li>
       </ul>
 
-      <a href="#" class="nav-cart" aria-label="Shopping cart">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <path d="M16 10a4 4 0 01-8 0"></path>
-        </svg>
-      </a>
+      <div class="nav-mobile-controls">
+        <button class="nav-cart-icon" aria-label="Shopping cart">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 01-8 0"></path>
+          </svg>
+        </button>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </nav>
   </header>
 
-  <main>
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/#name">Story</a>
+    <a href="/#collection">Collection</a>
+    <a href="/blog/">Journal</a>
+    <a href="/#subscribe">Subscribe</a>
+  </div>
 
-    <!-- ============================================
-         FAQ HEADER
-         ============================================ -->
-    <section class="section section-sand faq-header">
-      <div class="section-content">
-        <h1 class="faq-page-title fade-up">Frequently Asked Questions</h1>
-      </div>
-    </section>
+  <main class="faq-page">
+    <div class="faq-container">
+      <h1 class="faq-page-title fade-up">Frequently Asked Questions</h1>
 
-    <!-- ============================================
-         FAQ ACCORDION
-         ============================================ -->
-    <section class="section section-sand faq-section">
-      <div class="section-content">
-        <div class="faq-list">
-
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>What does HŌN mean?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What does HŌN mean?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
               <p>HŌN comes from the Greek text ὁ ὤν (ho ōn), which appears in the Septuagint translation of Exodus 3:14 — God's self-revelation to Moses at the burning bush: "I AM WHO I AM." It's the oldest surviving declaration of divine identity in the Judeo-Christian tradition, predating denominational divisions.</p>
             </div>
           </div>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>What comes with my order?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What comes with my order?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
               <p>Every piece ships with a devotional card specific to the symbol on your garment. The card includes the symbol's history, the original Greek and Latin phrases, a scripture reference, and a short reflection for your training.</p>
             </div>
           </div>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>What sizes are available?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What sizes are available?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
               <p>We currently offer S, M, L, XL, and XXL. See our Size Guide for detailed measurements. Our hoodies use a relaxed, athletic fit designed for training.</p>
             </div>
           </div>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>What's the return policy?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What's the return policy?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
               <p>We accept returns within 30 days of delivery for unworn, unwashed items in original condition. Contact hello@honapparel.com to initiate a return.</p>
             </div>
           </div>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>Where do you ship?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Where do you ship?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
               <p>We ship throughout the United States. International shipping is coming soon.</p>
             </div>
           </div>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>How long does shipping take?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>Each piece is made to order. Please allow 5-7 business days for production plus 3-5 business days for shipping. You'll receive tracking information by email.</p>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How long does shipping take?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Each piece is made to order. Please allow 5–7 business days for production plus 3–5 business days for shipping. You'll receive tracking information by email.</p>
             </div>
           </div>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>What printing method do you use?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What printing method do you use?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
               <p>We use DTFlex (Direct-to-Film Flex) printing on heavyweight garments. This method produces vibrant, durable prints that hold up through heavy use and repeated washing.</p>
             </div>
           </div>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>Are these just Christian T-shirts?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are these just Christian T-shirts?</span>
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
               <p>No. We recover symbols and phrases from the earliest centuries of the Christian faith — pre-schism, pre-denominational — and present them with historical context. Every piece is designed for people who actually train, with premium fabrics and considered construction. The educational component (devotional cards, blog content) is what separates HŌN from slogan-based faith apparel.</p>
             </div>
           </div>
-
         </div>
       </div>
-    </section>
-
+    </div>
   </main>
 
   <!-- ============================================
        FOOTER
        ============================================ -->
-  <footer id="footer" class="site-footer">
+  <footer id="footer">
     <div class="footer-inner">
       <div class="footer-columns">
         <div class="footer-col">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="/#collection">All Products</a></li>
-            <li><a href="/#collection">Hoodies</a></li>
-            <li><a href="/#collection">Training Shirts</a></li>
-            <li><a href="#">Gift Cards</a></li>
-          </ul>
+          <h4 class="footer-col-title">Shop</h4>
+          <a href="/#collection">All Products</a>
+          <a href="/#collection">Hoodies</a>
+          <a href="/#collection">Training Shirts</a>
+          <a href="#">Gift Cards</a>
         </div>
         <div class="footer-col">
-          <h4>Learn</h4>
-          <ul>
-            <li><a href="/blog/">Journal</a></li>
-            <li><a href="/faq/">FAQ</a></li>
-            <li><a href="#">Size Guide</a></li>
-          </ul>
+          <h4 class="footer-col-title">Learn</h4>
+          <a href="/blog/">Journal</a>
+          <a href="/faq/">FAQ</a>
+          <a href="#">Size Guide</a>
         </div>
         <div class="footer-col">
-          <h4>Connect</h4>
-          <ul>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="mailto:hello@honapparel.com">Email Us</a></li>
-          </ul>
+          <h4 class="footer-col-title">Connect</h4>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="mailto:hello@honapparel.com">Email Us</a>
         </div>
       </div>
       <div class="footer-bottom">
         <p class="footer-tagline">ὁ ὤν — The One Who Is</p>
-        <p class="footer-copyright">&copy; 2026 HŌN. Athletic Apparel for the Inner Person. Salinas, California.</p>
-        <p class="footer-legal">
-          <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-        </p>
+        <div class="footer-legal">
+          <span>&copy; 2026 HŌN. Athletic Apparel for the Inner Person. Salinas, California.</span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>

@@ -1,0 +1,359 @@
+/* ==========================================================================
+   HON Athletic Apparel — Splash / Coming Soon
+   Minimal standalone stylesheet. No dependencies.
+   ========================================================================== */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  --color-dark: #0F1B2D;
+  --color-gold: #C49B2A;
+  --color-sage: #6B8F71;
+  --color-sand: #F5F0E8;
+  --color-sand-dark: #D4C5A9;
+  --color-slate: #4A5568;
+  --color-white: #FAFAF8;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-uncial: 'Uncial Antiqua', cursive;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-white);
+  background-color: var(--color-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ---------- Splash Layout ---------- */
+.splash {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px 40px;
+  min-height: 100vh;
+}
+
+/* ---------- Brand Mark ---------- */
+.brand-mark {
+  margin-bottom: 24px;
+}
+
+.brand-greek {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  letter-spacing: 6px;
+  color: var(--color-gold);
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+  .brand-greek {
+    font-size: 24px;
+    letter-spacing: 8px;
+  }
+}
+
+/* ---------- Wordmark ---------- */
+.wordmark {
+  font-family: var(--font-uncial);
+  font-size: 72px;
+  font-weight: 400;
+  color: var(--color-gold);
+  letter-spacing: 4px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .wordmark {
+    font-size: 100px;
+    letter-spacing: 6px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wordmark {
+    font-size: 120px;
+    letter-spacing: 8px;
+  }
+}
+
+/* ---------- Tagline ---------- */
+.tagline {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-white);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+  .tagline {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tagline {
+    font-size: 26px;
+  }
+}
+
+/* ---------- Descriptor ---------- */
+.descriptor {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .descriptor {
+    font-size: 14px;
+    letter-spacing: 4px;
+  }
+}
+
+/* ---------- Gold Rule Divider ---------- */
+.gold-rule {
+  width: 48px;
+  border: none;
+  border-top: 1px solid var(--color-gold);
+  opacity: 0.5;
+  margin-bottom: 32px;
+}
+
+/* ---------- Coming Soon ---------- */
+.coming-soon {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+/* ---------- Shop Button ---------- */
+.btn-shop {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--color-gold);
+  color: var(--color-dark);
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  margin-bottom: 48px;
+}
+
+.btn-shop:hover {
+  background: #b38d24;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(196, 155, 42, 0.3);
+}
+
+.btn-shop:active {
+  transform: translateY(0);
+}
+
+/* ---------- Email Capture ---------- */
+.email-section {
+  max-width: 440px;
+  width: 100%;
+}
+
+.email-prompt {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 12px;
+}
+
+.email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+@media (min-width: 520px) {
+  .email-form {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+
+.email-form input[type="email"] {
+  flex: 1;
+  padding: 12px 16px;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+  border-radius: 4px;
+  transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+@media (min-width: 520px) {
+  .email-form input[type="email"] {
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+  }
+}
+
+.email-form input[type="email"]::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.email-form input[type="email"]:focus {
+  border-color: var(--color-gold);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.email-form button {
+  padding: 12px 24px;
+  background: var(--color-gold);
+  color: var(--color-dark);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.4s ease;
+  white-space: nowrap;
+}
+
+@media (min-width: 520px) {
+  .email-form button {
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.email-form button:hover {
+  background: #b38d24;
+}
+
+.email-privacy {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.25);
+  margin-top: 10px;
+}
+
+/* ---------- Footer ---------- */
+.splash-footer {
+  text-align: center;
+  padding: 32px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-origin {
+  font-family: var(--font-uncial);
+  font-size: 16px;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.footer-legal {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- Fade-In Animations ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
+.delay-4 { animation-delay: 0.65s; }
+.delay-5 { animation-delay: 0.85s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  body {
+    color: #000;
+    background: #fff;
+  }
+  .email-section,
+  .btn-shop {
+    display: none;
+  }
+}

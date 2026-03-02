@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.15 });
 
   document.querySelectorAll('.fade-up, .fade-in, .scale-in').forEach(el => {
+    // Skip hero elements — they animate on page load, not scroll
+    if (el.closest('.hero-content')) return;
     scrollObserver.observe(el);
   });
 
@@ -34,28 +36,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // ──────────────────────────────────────────────
   // 2. Hero Animation (Staggered on Page Load)
   // ──────────────────────────────────────────────
-  const heroElements = document.querySelectorAll('.hero-animate');
+  // Add .visible to all hero fade-ups at once after a brief delay.
+  // CSS transition-delay on each child handles the stagger timing.
+  const heroFadeEls = document.querySelectorAll('.hero-content .fade-up');
 
-  heroElements.forEach((el, index) => {
+  if (heroFadeEls.length > 0) {
     setTimeout(() => {
-      el.classList.add('visible');
-    }, 300 * (index + 1)); // 0.3s, 0.6s, 0.9s ...
-  });
+      heroFadeEls.forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 100);
+  }
 
 
   // ──────────────────────────────────────────────
   // 3. Navigation — Scroll Background + Scroll Spy
   // ──────────────────────────────────────────────
-  const nav = document.querySelector('nav');
-  const navLinks = document.querySelectorAll('a[data-section]');
+  const siteNav = document.getElementById('site-nav');
+  const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+  const isHomepage = document.getElementById('hero') !== null;
 
-  // 3a. Add .scrolled class to nav when user scrolls past 80px
-  if (nav) {
+  // 3a. Transparent → solid nav on scroll (homepage only)
+  if (siteNav && isHomepage) {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 80) {
-        nav.classList.add('scrolled');
+        siteNav.classList.add('scrolled');
       } else {
-        nav.classList.remove('scrolled');
+        siteNav.classList.remove('scrolled');
       }
     }, { passive: true });
   }
@@ -79,8 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, {
-      // Root margin pulls the detection zone toward the top of the viewport
-      // so the "active" link updates as the section enters the upper portion.
       rootMargin: '-20% 0px -60% 0px',
       threshold: 0
     });
@@ -97,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const targetId = anchor.getAttribute('href');
-      if (targetId === '#') return; // ignore bare "#" links
+      if (targetId === '#') return;
 
       const target = document.querySelector(targetId);
       if (target) {
@@ -111,26 +116,29 @@ document.addEventListener('DOMContentLoaded', () => {
   // ──────────────────────────────────────────────
   // 5. Mobile Menu Toggle
   // ──────────────────────────────────────────────
-  const navToggle = document.querySelector('.nav-toggle');
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-  if (nav && navToggle) {
-    // Open / close on hamburger click
-    navToggle.addEventListener('click', (e) => {
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
-      nav.classList.toggle('menu-open');
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
     });
 
-    // Close menu when a nav link is clicked
-    navLinks.forEach(link => {
+    // Close menu when a mobile link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        nav.classList.remove('menu-open');
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
       });
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target)) {
-        nav.classList.remove('menu-open');
+      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
       }
     });
   }
@@ -164,27 +172,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /**
-   * Expand a FAQ item with a smooth height transition.
-   * Expects `.faq-item` to contain a `.faq-answer` child.
-   */
   function expandAnswer(item) {
     const answer = item.querySelector('.faq-answer');
     if (!answer) return;
 
     item.classList.add('open');
 
-    // Animate from 0 to auto height
     answer.style.height = '0px';
     answer.style.overflow = 'hidden';
 
-    // Force reflow so the browser registers the starting height
     void answer.offsetHeight;
 
     answer.style.height = answer.scrollHeight + 'px';
 
-    // After the transition ends, let the height be auto so content
-    // reflows naturally if the viewport resizes.
     const onEnd = () => {
       answer.style.height = 'auto';
       answer.style.overflow = '';
@@ -193,18 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
     answer.addEventListener('transitionend', onEnd);
   }
 
-  /**
-   * Collapse a FAQ item with a smooth height transition.
-   */
   function collapseAnswer(item) {
     const answer = item.querySelector('.faq-answer');
     if (!answer) return;
 
-    // Lock the current computed height so we can transition from it
     answer.style.height = answer.scrollHeight + 'px';
     answer.style.overflow = 'hidden';
 
-    // Force reflow
     void answer.offsetHeight;
 
     answer.style.height = '0px';
@@ -233,7 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const originalText = submitBtn.textContent || submitBtn.value;
 
-      // Provide visual feedback
       if (submitBtn.tagName === 'INPUT') {
         submitBtn.value = 'Thanks!';
       } else {
@@ -242,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       submitBtn.disabled = true;
 
-      // Reset after 2.5 seconds
       setTimeout(() => {
         if (submitBtn.tagName === 'INPUT') {
           submitBtn.value = originalText;
