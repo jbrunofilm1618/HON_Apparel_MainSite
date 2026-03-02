@@ -173,13 +173,29 @@ button {
   margin-bottom: 32px;
 }
 
+/* ---------- Ides of March Teaser ---------- */
+.ides-teaser {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--color-gold);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+@media (min-width: 768px) {
+  .ides-teaser {
+    font-size: 18px;
+  }
+}
+
 /* ---------- Coming Soon ---------- */
 .coming-soon {
   font-family: var(--font-serif);
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
   letter-spacing: 1px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 /* ---------- Shop Button ---------- */
