@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HŌN | Athletic Apparel for Disciples</title>
+  <title>HŌN | Athletic Apparel for the Inner Person</title>
   <meta name="description" content="Training for Reigning. Premium athletic apparel rooted in the earliest traditions of the Christian faith. ὁ ὤν — The One Who Is.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="HŌN | Athletic Apparel for Disciples">
+  <meta property="og:title" content="HŌN | Athletic Apparel for the Inner Person">
   <meta property="og:description" content="Training for Reigning. Premium athletic apparel rooted in the earliest traditions of the Christian faith.">
   <meta property="og:image" content="https://honapparel.com/img/og-image.jpg">
   <meta property="og:url" content="https://honapparel.com/">
@@ -49,7 +49,7 @@
     <p class="tagline fade-in delay-2">Training for Reigning</p>
 
     <!-- Descriptor -->
-    <p class="descriptor fade-in delay-3">Athletic Apparel for Disciples</p>
+    <p class="descriptor fade-in delay-3">Athletic Apparel for the Inner Person</p>
 
     <!-- Divider -->
     <hr class="gold-rule fade-in delay-3">
@@ -84,6 +84,25 @@
     <p class="footer-origin">ὁ ὤν — The One Who Is</p>
     <p class="footer-legal">&copy; 2026 HŌN. Salinas, California.</p>
   </footer>
+
+  <!-- Email form handler (placeholder until ConvertKit/Mailchimp is connected) -->
+  <script>
+    document.querySelector('.email-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = this.querySelector('button');
+      var input = this.querySelector('input[type="email"]');
+      var original = btn.textContent;
+      btn.textContent = 'You\'re On The List';
+      btn.disabled = true;
+      input.disabled = true;
+      setTimeout(function() {
+        btn.textContent = original;
+        btn.disabled = false;
+        input.disabled = false;
+        input.value = '';
+      }, 3000);
+    });
+  </script>
 
 </body>
 </html>
