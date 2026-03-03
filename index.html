@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HŌN | Athletic Apparel for Disciples</title>
+  <title>HŌN | Athletic Apparel for the Inner Person</title>
   <meta name="description" content="Training for Reigning. Premium athletic apparel rooted in the earliest traditions of the Christian faith. ὁ ὤν — The One Who Is.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="HŌN | Athletic Apparel for Disciples">
+  <meta property="og:title" content="HŌN | Athletic Apparel for the Inner Person">
   <meta property="og:description" content="Training for Reigning. Premium athletic apparel rooted in the earliest traditions of the Christian faith.">
   <meta property="og:image" content="https://honapparel.com/img/og-image.jpg">
   <meta property="og:url" content="https://honapparel.com/">
@@ -23,6 +23,9 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/css/splash.css">
+
+  <!-- Kit (email) -->
+  <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -49,7 +52,7 @@
     <p class="tagline fade-in delay-2">Training for Reigning</p>
 
     <!-- Descriptor -->
-    <p class="descriptor fade-in delay-3">Athletic Apparel for Disciples</p>
+    <p class="descriptor fade-in delay-3">Athletic Apparel for the Inner Person</p>
 
     <!-- Divider -->
     <hr class="gold-rule fade-in delay-3">
@@ -61,9 +64,8 @@
     <!-- Email Capture -->
     <div class="email-section fade-in delay-5">
       <p class="email-prompt">Get on the list. Be first to know.</p>
-      <form class="email-form" action="#" method="POST">
-        <!-- Replace with ConvertKit or Mailchimp embed -->
-        <input type="email" placeholder="Your email" required>
+      <form class="email-form" action="https://app.kit.com/forms/9154078/subscriptions" method="POST" data-sv-form="9154078" data-uid="4448e44084" data-format="inline" data-version="5">
+        <input type="email" name="email_address" placeholder="Your email" required>
         <button type="submit">I'm In</button>
       </form>
       <p class="email-privacy">No spam. Unsubscribe anytime.</p>
@@ -84,6 +86,32 @@
     <p class="footer-origin">ὁ ὤν — The One Who Is</p>
     <p class="footer-legal">&copy; 2026 HŌN. Salinas, California.</p>
   </footer>
+
+  <!-- Kit form handler — submit via fetch, show confirmation inline -->
+  <script>
+    document.querySelector('.email-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var btn = form.querySelector('button');
+      var input = form.querySelector('input[type="email"]');
+      var email = input.value;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email_address=' + encodeURIComponent(email)
+      }).then(function() {
+        btn.textContent = "You're On The List";
+        input.disabled = true;
+        input.value = '';
+      }).catch(function() {
+        btn.textContent = "You're On The List";
+        input.disabled = true;
+        input.value = '';
+      });
+    });
+  </script>
 
 </body>
 </html>

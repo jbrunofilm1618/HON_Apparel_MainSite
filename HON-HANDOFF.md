@@ -35,7 +35,7 @@ Use CSS custom properties. Define once, use everywhere.
 
 ```css
 :root {
-  --color-dark: #0F1B2D;
+  --color-dark: #162B22;
   --color-gold: #C49B2A;
   --color-sage: #6B8F71;
   --color-sand: #F5F0E8;
