@@ -42,7 +42,7 @@
 
     <!-- Brand Mark -->
     <div class="brand-mark fade-in">
-      <span class="brand-greek">ὁ ὤν</span>
+      <span class="brand-greek" lang="grc">ὁ ὤν</span>
     </div>
 
     <!-- Wordmark -->
@@ -55,7 +55,7 @@
     <p class="descriptor fade-in delay-3">Athletic Apparel for the Inner Person</p>
 
     <!-- Divider -->
-    <hr class="gold-rule fade-in delay-3">
+    <hr class="gold-rule fade-in delay-3" aria-hidden="true">
 
     <!-- Ides of March Teaser -->
     <p class="ides-teaser fade-in delay-4">Beware the Ides of March</p>
@@ -65,25 +65,26 @@
     <div class="email-section fade-in delay-5">
       <p class="email-prompt">Get on the list. Be first to know.</p>
       <form class="email-form" action="https://app.kit.com/forms/9154078/subscriptions" method="POST" data-sv-form="9154078" data-uid="4448e44084" data-format="inline" data-version="5">
-        <input type="email" name="email_address" placeholder="Your email" required>
+        <input type="email" name="email_address" placeholder="Your email" required aria-label="Email address">
         <button type="submit">I'm In</button>
       </form>
       <p class="email-privacy">No spam. Unsubscribe anytime.</p>
+      <div class="sr-only" aria-live="polite" id="form-status"></div>
     </div>
 
     <!-- Divider -->
-    <hr class="gold-rule fade-in delay-5">
+    <hr class="gold-rule fade-in delay-5" aria-hidden="true">
 
     <!-- CTA -->
     <a href="https://hon-apparel.myshopify.com" class="btn-shop fade-in delay-5" target="_blank" rel="noopener">
-      Shop Now &rarr;
+      Shop Now <span aria-hidden="true">&rarr;</span><span class="sr-only"> (opens in new tab)</span>
     </a>
 
   </main>
 
   <!-- Footer -->
   <footer class="splash-footer fade-in delay-5">
-    <p class="footer-origin">ὁ ὤν — The One Who Is</p>
+    <p class="footer-origin"><span lang="grc">ὁ ὤν</span> — The One Who Is</p>
     <p class="footer-legal">&copy; 2026 HŌN. Salinas, California.</p>
   </footer>
 
@@ -94,9 +95,11 @@
       var form = this;
       var btn = form.querySelector('button');
       var input = form.querySelector('input[type="email"]');
+      var status = document.getElementById('form-status');
       var email = input.value;
       btn.disabled = true;
       btn.textContent = 'Sending...';
+      status.textContent = 'Submitting your email...';
       fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -105,10 +108,12 @@
         btn.textContent = "You're On The List";
         input.disabled = true;
         input.value = '';
+        status.textContent = "Success! You're on the list.";
       }).catch(function() {
         btn.textContent = "You're On The List";
         input.disabled = true;
         input.value = '';
+        status.textContent = "Success! You're on the list.";
       });
     });
   </script>
