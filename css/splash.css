@@ -58,12 +58,31 @@ input {
   font-family: inherit;
   font-size: inherit;
   border: none;
-  outline: none;
   background: none;
 }
 
 button {
   cursor: pointer;
+}
+
+/* ---------- Focus Styles ---------- */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.email-form input[type="email"]:focus-visible {
+  outline-offset: -1px;
+}
+
+.btn-shop:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-dark), 0 0 0 5px var(--color-gold);
+  outline: none;
+}
+
+.email-form button:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-dark), 0 0 0 5px var(--color-gold);
+  outline: none;
 }
 
 /* ---------- Splash Layout ---------- */
@@ -88,7 +107,7 @@ button {
   font-size: 20px;
   letter-spacing: 6px;
   color: var(--color-gold);
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 @media (min-width: 768px) {
@@ -193,7 +212,7 @@ button {
 .coming-soon {
   font-family: var(--font-serif);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.55);
   letter-spacing: 1px;
   margin-bottom: 32px;
 }
@@ -272,7 +291,7 @@ button {
 }
 
 .email-form input[type="email"]::placeholder {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .email-form input[type="email"]:focus {
@@ -309,7 +328,7 @@ button {
 .email-privacy {
   font-family: var(--font-serif);
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.5);
   margin-top: 10px;
 }
 
@@ -330,7 +349,20 @@ button {
 .footer-legal {
   font-family: var(--font-serif);
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Screen Reader Only ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ---------- Fade-In Animations ---------- */
