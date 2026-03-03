@@ -24,6 +24,9 @@
   <!-- Styles -->
   <link rel="stylesheet" href="/css/splash.css">
 
+  <!-- Kit (email) -->
+  <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
+
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
   <script>
@@ -61,9 +64,8 @@
     <!-- Email Capture -->
     <div class="email-section fade-in delay-5">
       <p class="email-prompt">Get on the list. Be first to know.</p>
-      <form class="email-form" action="#" method="POST">
-        <!-- Replace with ConvertKit or Mailchimp embed -->
-        <input type="email" placeholder="Your email" required>
+      <form class="email-form" action="https://app.kit.com/forms/9154078/subscriptions" method="POST" data-sv-form="9154078" data-uid="4448e44084" data-format="inline" data-version="5">
+        <input type="email" name="email_address" placeholder="Your email" required>
         <button type="submit">I'm In</button>
       </form>
       <p class="email-privacy">No spam. Unsubscribe anytime.</p>
@@ -85,22 +87,29 @@
     <p class="footer-legal">&copy; 2026 HŌN. Salinas, California.</p>
   </footer>
 
-  <!-- Email form handler (placeholder until ConvertKit/Mailchimp is connected) -->
+  <!-- Kit form handler — submit via fetch, show confirmation inline -->
   <script>
     document.querySelector('.email-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      var btn = this.querySelector('button');
-      var input = this.querySelector('input[type="email"]');
-      var original = btn.textContent;
-      btn.textContent = 'You\'re On The List';
+      var form = this;
+      var btn = form.querySelector('button');
+      var input = form.querySelector('input[type="email"]');
+      var email = input.value;
       btn.disabled = true;
-      input.disabled = true;
-      setTimeout(function() {
-        btn.textContent = original;
-        btn.disabled = false;
-        input.disabled = false;
+      btn.textContent = 'Sending...';
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email_address=' + encodeURIComponent(email)
+      }).then(function() {
+        btn.textContent = "You're On The List";
+        input.disabled = true;
         input.value = '';
-      }, 3000);
+      }).catch(function() {
+        btn.textContent = "You're On The List";
+        input.disabled = true;
+        input.value = '';
+      });
     });
   </script>
 
