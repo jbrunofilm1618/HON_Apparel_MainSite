@@ -26,6 +26,30 @@ export default {
     const subject = parsed.subject || "(no subject)";
     const body = parsed.text || parsed.html || "";
 
+    // Guard: skip auto-reply if this email is itself automated.
+    // Checks standard headers that mail servers set on auto-generated messages.
+    // This prevents double-replies and infinite reply loops.
+    const headers = parsed.headers || [];
+    const getHeader = (name) =>
+      headers.find((h) => h.key.toLowerCase() === name.toLowerCase())?.value || "";
+
+    const autoSubmitted = getHeader("auto-submitted");
+    const precedence = getHeader("precedence");
+    const xAutoResponseSuppress = getHeader("x-auto-response-suppress");
+
+    const isAutomated =
+      (autoSubmitted && autoSubmitted.toLowerCase() !== "no") ||
+      /bulk|list|auto_reply|junk/i.test(precedence) ||
+      xAutoResponseSuppress.length > 0 ||
+      /no-?reply|mailer-daemon|postmaster|do-not-reply/i.test(senderAddress);
+
+    if (isAutomated) {
+      // Still forward to the team so nothing is lost, but skip the auto-reply
+      const forwardTo = env.FORWARD_TO || "jonathan@honapparel.com";
+      await message.forward(forwardTo);
+      return;
+    }
+
     // Truncate body to avoid excessive token usage
     const truncatedBody = body.slice(0, 1500);
 
@@ -35,7 +59,7 @@ export default {
       replyBody = await generateReply(env, senderName, subject, truncatedBody);
     } catch (err) {
       console.error("AI reply generation failed, using fallback:", err);
-      replyBody = getFallbackReply(senderName);
+      replyBody = getFallbackReply(senderName, subject, truncatedBody);
     }
 
     // Build the auto-reply email
@@ -62,20 +86,26 @@ export default {
  * Generate a polite receptionist-style reply via Workers AI.
  */
 async function generateReply(env, senderName, subject, body) {
-  const prompt = `You are a polite, professional customer service receptionist for HON Apparel, a faith-inspired athletic apparel brand. A customer has emailed and you need to write a brief, warm acknowledgment reply.
+  // Extract first name only for a more personal greeting
+  const firstName = senderName.includes("@")
+    ? senderName.split("@")[0]
+    : senderName.split(" ")[0];
+
+  const prompt = `You are a warm, professional customer service receptionist for HON Apparel, a faith-inspired athletic apparel brand. Write a brief, genuine acknowledgment reply to this customer email.
 
 Rules:
-- Thank them for reaching out
-- Acknowledge their inquiry without attempting to resolve it
-- Let them know the matter has been raised with the team and someone will follow up shortly
-- Keep it to 3-5 sentences
+- Address them by first name: "${firstName}"
+- In 1 sentence, briefly reflect the specific topic or concern they raised (e.g. if they asked about an order, mention their order; if they asked about sizing, mention sizing) — do NOT make up details, just echo their topic back warmly
+- Let them know their message has been passed to the team and someone will follow up shortly
+- Keep the total reply to 3–5 sentences max
 - Sign off as "The HON Apparel Team"
-- Do NOT make up any specific information, policies, or promises beyond a timely follow-up
-- Do NOT include a subject line, just the body of the reply
+- Do NOT make up policies, pricing, timelines, or promises beyond a timely follow-up
+- Do NOT include a subject line — just the email body
+- Write in a tone that is warm, human, and brief — not corporate or robotic
 
 Customer name: ${senderName}
 Subject: ${subject}
-Message excerpt:
+Message:
 ${body}`;
 
   const response = await env.AI.run("@cf/openai/gpt-oss-20b", {
@@ -87,19 +117,36 @@ ${body}`;
     temperature: 0.7,
   });
 
-  return response.response || getFallbackReply(senderName);
+  return response.response || getFallbackReply(senderName, subject, body);
 }
 
 /**
  * Fallback reply if the AI model is unavailable.
+ * Includes a light subject-aware touch so it doesn't feel fully generic.
  */
-function getFallbackReply(senderName) {
-  const name = senderName.split("@")[0]; // strip email domain if no display name
-  return `Dear ${name},
+function getFallbackReply(senderName, subject = "", body = "") {
+  const firstName = senderName.includes("@")
+    ? senderName.split("@")[0]
+    : senderName.split(" ")[0];
 
-Thank you for reaching out to HON Apparel. We have received your message and your inquiry has been raised with our team. A member of our staff will follow up with you shortly.
+  // Detect common topics from subject/body to add one personal sentence
+  const combined = (subject + " " + body).toLowerCase();
+  let topicLine = "We've received your message and have passed it along to our team.";
+  if (/order|tracking|ship|deliver/i.test(combined)) {
+    topicLine = "We've received your message about your order and have passed it along to our team.";
+  } else if (/size|sizing|fit|measurement/i.test(combined)) {
+    topicLine = "We've received your sizing question and have passed it along to our team.";
+  } else if (/return|exchange|refund/i.test(combined)) {
+    topicLine = "We've received your return or exchange request and have passed it along to our team.";
+  } else if (/wholesale|bulk|partner|collab/i.test(combined)) {
+    topicLine = "We've received your partnership or wholesale inquiry and have passed it along to our team.";
+  }
 
-We appreciate your patience and look forward to assisting you.
+  return `Hi ${firstName},
+
+Thanks for reaching out to HON Apparel — we appreciate you taking the time to connect with us.
+
+${topicLine} Someone will follow up with you shortly.
 
 Warm regards,
 The HON Apparel Team`;
