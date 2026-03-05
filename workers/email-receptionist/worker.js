@@ -43,6 +43,21 @@ export default {
       xAutoResponseSuppress.length > 0 ||
       /no-?reply|mailer-daemon|postmaster|do-not-reply/i.test(senderAddress);
 
+    // Guard: only auto-reply to emails arriving at the public inboxes.
+    // If message.to is NOT info@ or support@, this is likely a forwarded
+    // copy looping back through Cloudflare routing — skip the auto-reply.
+    const publicInboxes = (env.PUBLIC_INBOXES || "info@honapparel.com,support@honapparel.com")
+      .split(",")
+      .map((a) => a.trim().toLowerCase());
+    const recipientAddress = (message.to || "").toLowerCase();
+
+    if (!publicInboxes.includes(recipientAddress)) {
+      // Not a public inbox — forward only, no reply
+      const forwardTo = env.FORWARD_TO || "jonathan@honapparel.com";
+      await message.forward(forwardTo);
+      return;
+    }
+
     if (isAutomated) {
       // Still forward to the team so nothing is lost, but skip the auto-reply
       const forwardTo = env.FORWARD_TO || "jonathan@honapparel.com";
@@ -167,6 +182,7 @@ function buildReplyMime({ to, toName, from, subject, body, inReplyTo }) {
     inReplyTo ? `In-Reply-To: ${inReplyTo}` : "",
     inReplyTo ? `References: ${inReplyTo}` : "",
     `MIME-Version: 1.0`,
+    `Auto-Submitted: auto-replied`,
     `Content-Type: text/plain; charset=UTF-8`,
     `Content-Transfer-Encoding: 7bit`,
     ``,

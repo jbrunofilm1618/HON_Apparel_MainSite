@@ -44,11 +44,12 @@ npm run deploy
 2. Under **Routes**, edit (or create) the routes for:
    - `info@honapparel.com`
    - `support@honapparel.com`
-3. Change the action from "Forward to" to **"Send to a Worker"**
-4. Select **hon-email-receptionist** from the worker dropdown
+3. Set the action to **"Send to a Worker"** and select **hon-email-receptionist**
+4. **IMPORTANT:** Make sure each route has ONLY this one action. If there is also a "Forward to email" action on the same route, remove it — the worker handles forwarding internally. Two actions = two emails to the customer.
 5. Save
 
-Emails will now get an AI auto-reply AND be forwarded to your Gmail.
+> **After any code change, you must redeploy** (`npm run deploy`) for the change
+> to take effect on Cloudflare. Git commits alone do not update the live worker.
 
 ## Configuration
 
