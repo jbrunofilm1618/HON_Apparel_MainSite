@@ -26,6 +26,30 @@ export default {
     const subject = parsed.subject || "(no subject)";
     const body = parsed.text || parsed.html || "";
 
+    // Guard: skip auto-reply if this email is itself automated.
+    // Checks standard headers that mail servers set on auto-generated messages.
+    // This prevents double-replies and infinite reply loops.
+    const headers = parsed.headers || [];
+    const getHeader = (name) =>
+      headers.find((h) => h.key.toLowerCase() === name.toLowerCase())?.value || "";
+
+    const autoSubmitted = getHeader("auto-submitted");
+    const precedence = getHeader("precedence");
+    const xAutoResponseSuppress = getHeader("x-auto-response-suppress");
+
+    const isAutomated =
+      (autoSubmitted && autoSubmitted.toLowerCase() !== "no") ||
+      /bulk|list|auto_reply|junk/i.test(precedence) ||
+      xAutoResponseSuppress.length > 0 ||
+      /no-?reply|mailer-daemon|postmaster|do-not-reply/i.test(senderAddress);
+
+    if (isAutomated) {
+      // Still forward to the team so nothing is lost, but skip the auto-reply
+      const forwardTo = env.FORWARD_TO || "jonathan@honapparel.com";
+      await message.forward(forwardTo);
+      return;
+    }
+
     // Truncate body to avoid excessive token usage
     const truncatedBody = body.slice(0, 1500);
 
