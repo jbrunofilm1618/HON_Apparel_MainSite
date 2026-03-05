@@ -52,16 +52,16 @@ export default {
     const recipientAddress = (message.to || "").toLowerCase();
 
     if (!publicInboxes.includes(recipientAddress)) {
-      // Not a public inbox — forward only, no reply
-      const forwardTo = env.FORWARD_TO || "jonathan@honapparel.com";
-      await message.forward(forwardTo);
+      // Not a public inbox — this is a forwarded internal copy looping back
+      // through Cloudflare routing. Drop it silently to break the loop.
+      // Do NOT forward again or we recurse infinitely.
       return;
     }
 
     if (isAutomated) {
-      // Still forward to the team so nothing is lost, but skip the auto-reply
+      // Automated email — forward to team but skip the auto-reply.
       const forwardTo = env.FORWARD_TO || "jonathan@honapparel.com";
-      await message.forward(forwardTo);
+      try { await message.forward(forwardTo); } catch (_) {}
       return;
     }
 
@@ -87,13 +87,22 @@ export default {
       inReplyTo: parsed.messageId,
     });
 
-    // Send the auto-reply
-    const replyMessage = new EmailMessage(message.to, senderAddress, replyMime);
-    await message.reply(replyMessage);
+    // Send the auto-reply — wrap in try/catch so a delivery failure doesn't
+    // crash the worker (which would cause iCloud/Gmail to retry the original
+    // email and trigger duplicate auto-replies).
+    try {
+      const replyMessage = new EmailMessage(message.to, senderAddress, replyMime);
+      await message.reply(replyMessage);
+    } catch (err) {
+      console.error("Auto-reply send failed:", err);
+    }
 
-    // Forward original email to the team
+    // Forward original email to the team — also wrapped so a forward failure
+    // doesn't crash the worker and trigger SMTP retries.
     const forwardTo = env.FORWARD_TO || "jonathan@honapparel.com";
-    await message.forward(forwardTo);
+    try { await message.forward(forwardTo); } catch (err) {
+      console.error("Forward failed:", err);
+    }
   },
 };
 
