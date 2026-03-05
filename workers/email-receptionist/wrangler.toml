@@ -8,7 +8,7 @@ binding = "AI"
 
 # Environment variables
 [vars]
-FORWARD_TO = "jonathan@honapparel.com"
+FORWARD_TO = "jbrunofilm@gmail.com"
 
 # Email routing — tells Cloudflare to send matching emails to this worker
 # After deploying, go to Cloudflare Dashboard → Email → Email Routing → Routes

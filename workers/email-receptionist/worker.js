@@ -46,7 +46,7 @@ export default {
     // Guard: only auto-reply to emails arriving at the public inboxes.
     // If message.to is NOT info@ or support@, this is likely a forwarded
     // copy looping back through Cloudflare routing — skip the auto-reply.
-    const publicInboxes = (env.PUBLIC_INBOXES || "info@honapparel.com,support@honapparel.com")
+    const publicInboxes = (env.PUBLIC_INBOXES || "info@honapparel.com,support@honapparel.com,orders@honapparel.com")
       .split(",")
       .map((a) => a.trim().toLowerCase());
     const recipientAddress = (message.to || "").toLowerCase();
