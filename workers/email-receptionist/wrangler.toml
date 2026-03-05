@@ -1,0 +1,15 @@
+name = "hon-email-receptionist"
+main = "worker.js"
+compatibility_date = "2024-09-01"
+
+# Workers AI binding — gives the worker access to Cloudflare AI models
+[ai]
+binding = "AI"
+
+# Environment variables
+[vars]
+FORWARD_TO = "jonathan@honapparel.com"
+
+# Email routing — tells Cloudflare to send matching emails to this worker
+# After deploying, go to Cloudflare Dashboard → Email → Email Routing → Routes
+# and point info@ and support@ to this worker instead of (or in addition to) forwarding.

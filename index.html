@@ -62,9 +62,17 @@
     <!-- Email Capture -->
     <div class="email-section fade-in delay-5">
       <p class="email-prompt">Get on the list. Be first to know.</p>
-      <form class="email-form" action="https://app.kit.com/forms/9154078/subscriptions" method="POST" data-sv-form="9154078" data-uid="4448e44084" data-format="inline" data-version="5">
-        <input type="email" name="email_address" placeholder="Your email" required aria-label="Email address">
-        <button type="submit">I'm In</button>
+      <form class="email-form seva-form formkit-form" action="https://app.kit.com/forms/9154078/subscriptions" method="post" data-sv-form="9154078" data-uid="4448e44084" data-format="inline" data-version="5" data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://kit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}'>
+        <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+        <div data-element="fields" class="seva-fields formkit-fields">
+          <div class="formkit-field">
+            <input class="formkit-input" type="email" name="email_address" placeholder="Your email" required aria-label="Email address" style="color: rgb(0, 0, 0); border-color: rgb(227, 227, 227); border-radius: 4px; font-weight: 400;">
+          </div>
+          <button data-element="submit" class="formkit-submit" type="submit">
+            <div class="formkit-spinner"><div></div><div></div><div></div></div>
+            <span>I'm In</span>
+          </button>
+        </div>
       </form>
       <p class="email-privacy">No spam. Unsubscribe anytime.</p>
       <div class="sr-only" aria-live="polite" id="form-status"></div>
@@ -86,35 +94,6 @@
     <p class="footer-legal">&copy; 2026 HŌN. Salinas, California.</p>
   </footer>
 
-  <!-- Kit form handler — submit via fetch, show confirmation inline -->
-  <script>
-    document.querySelector('.email-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var form = this;
-      var btn = form.querySelector('button');
-      var input = form.querySelector('input[type="email"]');
-      var status = document.getElementById('form-status');
-      var email = input.value;
-      btn.disabled = true;
-      btn.textContent = 'Sending...';
-      status.textContent = 'Submitting your email...';
-      fetch(form.action, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'email_address=' + encodeURIComponent(email)
-      }).then(function() {
-        btn.textContent = "You're On The List";
-        input.disabled = true;
-        input.value = '';
-        status.textContent = "Success! You're on the list.";
-      }).catch(function() {
-        btn.textContent = "You're On The List";
-        input.disabled = true;
-        input.value = '';
-        status.textContent = "Success! You're on the list.";
-      });
-    });
-  </script>
 
 </body>
 </html>
