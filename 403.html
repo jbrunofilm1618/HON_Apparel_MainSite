@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HŌN | Site Unavailable</title>
+  <link rel="icon" href="/img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --color-dark: #162B22;
+      --color-gold: #C49B2A;
+      --color-gold-dim: rgba(196, 155, 42, 0.15);
+      --font-uncial: 'Uncial Antiqua', cursive;
+      --font-serif: Georgia, 'Times New Roman', serif;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--color-dark);
+      color: var(--color-gold);
+      font-family: var(--font-serif);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .logo {
+      font-family: var(--font-uncial);
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      letter-spacing: 0.15em;
+      color: var(--color-gold);
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--color-gold);
+      opacity: 0.4;
+      margin: 0 auto 2.5rem;
+    }
+
+    .code {
+      font-family: var(--font-uncial);
+      font-size: clamp(4rem, 18vw, 10rem);
+      color: var(--color-gold);
+      opacity: 0.12;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      font-weight: normal;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      opacity: 0.75;
+      margin-bottom: 1.25rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--color-gold);
+      opacity: 0.5;
+      max-width: 360px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .contact {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      opacity: 0.4;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196, 155, 42, 0.2);
+      padding-bottom: 2px;
+      transition: opacity 0.3s;
+    }
+
+    .contact:hover {
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">HŌN</div>
+  <div class="divider"></div>
+  <div class="code">403</div>
+  <h1>Access Restricted</h1>
+  <p>This site is currently unavailable. We'll be back soon.</p>
+  <a class="contact" href="mailto:info@honapparel.com">info@honapparel.com</a>
+</body>
+</html>
